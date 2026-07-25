@@ -1,0 +1,75 @@
+name: Refresh dashboard data
+
+# Runs the GovScout pipeline against the live SAM.gov API and commits the
+# resulting JSON straight into src/data/dashboard.json.
+#
+# Quota note: SAM_API_KEY is expected to be a personal api.data.gov key
+# without an entity role, capped at ~10 requests/day. pipeline/config.json
+# pins max_pages to 1, so a normal run spends exactly one request. If you
+# add an entity role to the key (raises the quota to ~1000/day), you can
+# raise max_pages in pipeline/config.json accordingly.
+#
+# Scheduling gotcha: GitHub disables scheduled workflows after 60 days of
+# repository inactivity (no pushes/commits). If daily runs silently stop,
+# push any commit to the repo (or re-enable the workflow from the Actions
+# tab) to reactivate the schedule.
+
+on:
+  schedule:
+    - cron: "0 13 * * *" # 13:00 UTC daily (~9am US Eastern)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-dashboard
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pipeline dependencies
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Fetch live SAM.gov data
+        id: fetch
+        working-directory: pipeline
+        env:
+          SAM_API_KEY: ${{ secrets.SAM_API_KEY }}
+        run: python -m govscout fetch --json ../src/data/dashboard.json
+        continue-on-error: true
+
+      - name: Check for changes
+        id: diff
+        if: steps.fetch.outcome == 'success'
+        run: |
+          if git diff --quiet -- src/data/dashboard.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push updated data
+        if: steps.fetch.outcome == 'success' && steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/dashboard.json
+          git commit -m "chore: refresh dashboard data from SAM.gov"
+          git push
+
+      - name: Fail visibly on fetch error (no commit made)
+        if: steps.fetch.outcome != 'success'
+        run: |
+          echo "::error::SAM.gov fetch failed (rate limit, missing/invalid key, or network error). Leaving existing dashboard.json untouched — see the 'Fetch live SAM.gov data' step above for details."
+          exit 1
