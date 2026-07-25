@@ -1,0 +1,7 @@
+{
+  "psc_codes": ["5340", "5962"],
+  "days_back": 30,
+  "db_path": "govscout.db",
+  "output_dir": "out",
+  "max_pages": 1
+}

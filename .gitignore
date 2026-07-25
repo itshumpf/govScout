@@ -1,3 +1,10 @@
 node_modules/
 dist/
 .astro/
+
+# Python pipeline cruft (pipeline/ — see pipeline/README.md)
+__pycache__/
+*.pyc
+*.db
+pipeline/out/
+.env*

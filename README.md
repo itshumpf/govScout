@@ -1,9 +1,9 @@
 # GovScout Dashboard
 
 A static [Astro](https://astro.build) site that renders the output of the
-[GovScout](../project) CLI pipeline: federal solicitations scored for
-pricing signals, with NSN / part-number / quantity line items extracted
-for quoting.
+GovScout CLI pipeline (bundled in this repo at [`pipeline/`](pipeline)):
+federal solicitations scored for pricing signals, with NSN / part-number /
+quantity line items extracted for quoting.
 
 Dark theme, amber accent, zero client-side JavaScript dependencies —
 plain `.astro` components plus a small vanilla `<script>` for filtering.
@@ -38,27 +38,45 @@ by the GovScout CLI (`--json` flag on the `demo` and `fetch` commands):
 
 ### Refreshing the data
 
-From the `govscout` project directory (the sibling `project/` repo):
+The GovScout Python pipeline lives in this repo at `pipeline/` (a copy of
+the original `../project` repo — see `pipeline/README.md`). It writes
+straight into `src/data/dashboard.json`:
 
 ```bash
-# offline sample data
-python -m govscout demo --json out/dash.json
+cd pipeline
+pip install -r requirements.txt
 
-# or live SAM.gov data (needs SAM_API_KEY)
-python -m govscout fetch --json out/dash.json
+# offline sample data
+python -m govscout demo --json ../src/data/dashboard.json
+
+# or live SAM.gov data (needs SAM_API_KEY; pipeline/config.json auto-loads
+# and caps a run to one request — see pipeline/README.md's quota notes)
+SAM_API_KEY=your_key_here python -m govscout fetch --json ../src/data/dashboard.json
 ```
 
-Then copy it into this site and commit:
+Then commit the result:
 
 ```bash
-cp out/dash.json src/data/dashboard.json
 git add src/data/dashboard.json
 git commit -m "Refresh dashboard data"
 ```
 
-Rebuild (`npm run build`) and redeploy — that's it. The demo banner, tier
-counts, cards, and filter options all regenerate from the JSON at build
-time.
+**Automated daily refresh:** `.github/workflows/refresh.yml` runs this
+automatically once a day (plus on-demand via the Actions tab's "Run
+workflow" button) and commits the result for you. It needs a repo secret:
+
+1. Go to **Settings → Secrets and variables → Actions** on GitHub.
+2. Add a secret named `SAM_API_KEY` with your api.data.gov key.
+
+If the fetch fails (rate limit, missing key, network error) the workflow
+fails visibly but does **not** commit — the last-good `dashboard.json`
+stays in place. Note: GitHub disables scheduled workflows after 60 days
+of repo inactivity; push any commit (or re-enable it from the Actions
+tab) to reactivate the schedule if daily runs silently stop.
+
+Either way, rebuild (`npm run build`) and redeploy — that's it. The demo
+banner, tier counts, cards, and filter options all regenerate from the
+JSON at build time.
 
 ## Local development
 
