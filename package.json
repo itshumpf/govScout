@@ -1,0 +1,14 @@
+{
+  "name": "govscout-site",
+  "version": "1.0.0",
+  "description": "Static dashboard for GovScout federal solicitation pipeline output",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "astro": "^7.1.3"
+  }
+}

@@ -1,0 +1,109 @@
+---
+export interface Sol {
+  sol_number: string;
+  title: string;
+  agency: string;
+  psc_code: string;
+  posted_date: string;
+  response_deadline: string;
+  url: string;
+  nsns: string;
+  part_numbers: string;
+  quantities: string;
+  pricing_score: number;
+  pricing_flags: string[];
+  description: string;
+  fetched_at: string;
+}
+
+interface Props {
+  sol: Sol;
+  tier: "high" | "medium" | "low";
+}
+
+const { sol, tier } = Astro.props;
+
+const split = (s: string) => s.split(";").map((p) => p.trim()).filter(Boolean);
+const nsns = split(sol.nsns);
+const parts = split(sol.part_numbers);
+const qtys = split(sol.quantities);
+
+const searchText = [sol.title, sol.agency, sol.sol_number, sol.nsns]
+  .join(" ")
+  .toLowerCase();
+---
+
+<article
+  class="card"
+  data-tier={tier}
+  data-psc={sol.psc_code}
+  data-search={searchText}
+>
+  <div class="card-top">
+    <h3 class="card-title">{sol.title}</h3>
+    <span
+      class:list={["score-badge", `tier-${tier}`]}
+      title={`Pricing score: ${sol.pricing_score}/100`}
+    >
+      {sol.pricing_score}
+    </span>
+  </div>
+
+  <dl class="card-meta">
+    <dt>Agency</dt>
+    <dd>{sol.agency}</dd>
+    <dt>Sol #</dt>
+    <dd class="mono">{sol.sol_number}</dd>
+    {sol.psc_code && (
+      <>
+        <dt>PSC</dt>
+        <dd class="mono">{sol.psc_code}</dd>
+      </>
+    )}
+    <dt>Posted</dt>
+    <dd class="mono">{sol.posted_date}</dd>
+    {sol.response_deadline && (
+      <>
+        <dt>Deadline</dt>
+        <dd class="mono">{sol.response_deadline}</dd>
+      </>
+    )}
+  </dl>
+
+  {sol.pricing_flags.length > 0 && (
+    <div class="chips">
+      {sol.pricing_flags.map((flag) => <span class="chip">{flag.replace(/_/g, " ")}</span>)}
+    </div>
+  )}
+
+  {(nsns.length > 0 || parts.length > 0 || qtys.length > 0) && (
+    <div class="line-items">
+      {nsns.length > 0 && (
+        <div class="li-row">
+          <span class="li-label">NSN</span>
+          <span class="li-values">{nsns.join("; ")}</span>
+        </div>
+      )}
+      {parts.length > 0 && (
+        <div class="li-row">
+          <span class="li-label">P/N</span>
+          <span class="li-values">{parts.join("; ")}</span>
+        </div>
+      )}
+      {qtys.length > 0 && (
+        <div class="li-row">
+          <span class="li-label">Qty</span>
+          <span class="li-values">{qtys.join("; ")}</span>
+        </div>
+      )}
+    </div>
+  )}
+
+  {sol.url && (
+    <div class="card-link">
+      <a href={sol.url} target="_blank" rel="noopener noreferrer">
+        View solicitation
+      </a>
+    </div>
+  )}
+</article>
