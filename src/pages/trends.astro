@@ -1,0 +1,257 @@
+---
+import "../styles/global.css";
+import dashboard from "../data/dashboard.json";
+
+const { generated_at, source, stats } = dashboard;
+const sols = dashboard.solicitations;
+
+const generatedDate = new Date(generated_at);
+const generatedLabel = generatedDate.toLocaleString("en-US", {
+  dateStyle: "medium",
+  timeStyle: "short",
+  timeZone: "UTC",
+}) + " UTC";
+
+const totalCount = stats.stored || sols.length;
+const withPricing = stats.with_pricing_signals || 0;
+const pricingPercent = totalCount > 0 ? Math.round((withPricing / totalCount) * 100) : 0;
+
+const weekdays = stats.by_weekday || { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
+const fscs = stats.by_fsc || [];
+
+// Find peak day
+let peakDay = "Tuesday";
+let maxDayCount = 0;
+Object.entries(weekdays).forEach(([day, count]) => {
+  if ((count as number) > maxDayCount) {
+    maxDayCount = count as number;
+    peakDay = day;
+  }
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="GovScout Defense Procurement Trends & Market Intelligence — Day-of-week release velocity, FSC supply breakdown, and pricing signal density."
+    />
+    <title>Procurement Trends & Market Intelligence — GovScout</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <div class="brand">
+          <a href="/" class="brand-link">
+            <h1>Gov<span class="scout">Scout</span> <span class="trends-badge">TRENDS</span></h1>
+          </a>
+          <span class="source-badge">source: {source}</span>
+        </div>
+        <p class="tagline">
+          Defense Procurement Velocity & Market Intelligence — Tracking U.S. Defense Logistics Agency (DLA) release patterns across Federal Supply Codes.
+        </p>
+        <div class="header-meta-row">
+          <p class="generated">updated {generatedLabel}</p>
+          <a href="/" class="trends-jump-btn">← Back to Live Solicitations</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <!-- High-level Metric Cards -->
+      <section class="stats" aria-label="Trends Summary">
+        <div class="stat-card">
+          <span class="stat-value">{totalCount}</span>
+          <span class="stat-label">Total Solicitations</span>
+        </div>
+        <div class="stat-card accent">
+          <span class="stat-value">{pricingPercent}%</span>
+          <span class="stat-label">Pricing Signal Coverage</span>
+        </div>
+        <div class="stat-card tier-high">
+          <span class="stat-value">{fscs.length}</span>
+          <span class="stat-label">Active FSC Categories</span>
+        </div>
+        <div class="stat-card tier-medium">
+          <span class="stat-value">{peakDay}</span>
+          <span class="stat-label">Peak Release Day</span>
+        </div>
+      </section>
+
+      <!-- Main Trends Grid -->
+      <section class="trends-section">
+        <div class="trends-header">
+          <h2 class="trends-title">📊 Defense Procurement Velocity & Market Intelligence</h2>
+          <p class="trends-subtitle">
+            Automated time-series analytics tracking solicitation release volume and supply code concentration across DLA Land & Maritime.
+          </p>
+        </div>
+
+        <div class="trends-grid">
+          <!-- Day of Week Release Volume -->
+          <div class="trend-card">
+            <div class="trend-card-title">Release Volume by Day of Week</div>
+            <p class="card-hint">Shows daily solicitation drop volume accumulated over rolling 7-day cycles.</p>
+            <div class="weekday-bars">
+              {Object.entries(weekdays).map(([day, count]) => {
+                const maxCount = Math.max(...Object.values(weekdays as Record<string, number>), 1);
+                const heightPercent = Math.max(12, Math.round(((count as number) / maxCount) * 100));
+                const isPeak = day === peakDay;
+                return (
+                  <div class="bar-col">
+                    <span class="bar-count">{count as number}</span>
+                    <div class={`bar-fill ${isPeak ? 'highlight' : ''}`} style={`height: ${heightPercent}%`} />
+                    <span class="bar-label">{day}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <!-- Top Active FSC Categories -->
+          <div class="trend-card">
+            <div class="trend-card-title">Top Federal Supply Codes (FSC)</div>
+            <p class="card-hint">Ranked by current solicitation concentration and quoting activity.</p>
+            <div class="fsc-list">
+              {fscs.map((item: { code: string; name: string; count: number }) => (
+                <div class="fsc-row">
+                  <div>
+                    <span class="fsc-code-badge">FSC {item.code}</span>
+                    <span class="fsc-name">{item.name}</span>
+                  </div>
+                  <span class="fsc-count-badge">{item.count} solicitations</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Weekly Digest & Roadmap Note -->
+        <div class="weekly-digest-card">
+          <div class="digest-header">
+            <span class="digest-icon">💡</span>
+            <h3>Weekly Market Digest & Automated Accumulation</h3>
+          </div>
+          <p class="digest-text">
+            GovScout's automated pipeline cycles through a different group of Federal Supply Codes every 24 hours at 13:00 UTC (~9am Eastern). Results accumulate into the database throughout the week rather than overwriting past runs.
+          </p>
+          <div class="digest-callout">
+            📌 <strong>Pro Tip:</strong> Check back every Monday morning for the full weekly DLA procurement report as new daily data populates across all 70+ Federal Supply Codes!
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        Built with GovScout — Defense procurement velocity, pricing-signal detection, and FSC supply trends. Data updated daily from SAM.gov.
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .brand-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .trends-badge {
+    font-size: 0.75rem;
+    font-family: var(--mono);
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    border: 1px solid rgba(245, 166, 35, 0.3);
+    vertical-align: middle;
+  }
+
+  .card-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: -6px;
+    margin-bottom: 16px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .stat-card.accent .stat-value { color: var(--accent); }
+  .stat-card.tier-high .stat-value { color: #10b981; }
+  .stat-card.tier-medium .stat-value { color: #5eb1ef; }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
+
+  .weekly-digest-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+
+  .digest-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .digest-header h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text);
+  }
+
+  .digest-icon {
+    font-size: 1.2rem;
+  }
+
+  .digest-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0 0 12px;
+  }
+
+  .digest-callout {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--text);
+    background: rgba(245, 166, 35, 0.08);
+    border: 1px solid rgba(245, 166, 35, 0.2);
+    padding: 10px 14px;
+    border-radius: 6px;
+  }
+</style>
