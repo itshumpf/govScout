@@ -139,13 +139,25 @@ python -m govscout fetch --config config.json --digest
 Example `config.json`:
 
 ```json
-{ "psc_codes": ["5340", "5962"], "days_back": 30, "db_path": "govscout.db", "output_dir": "out", "max_pages": 1 }
+{ "psc_codes": ["5340", "5962"], "days_back": 30, "db_path": "govscout.db", "output_dir": "out", "max_pages": 3,
+  "psc_rotation": { "mon": ["5305", "..."], "tue": ["..."], "...": "..." } }
 ```
+
+## Free-tier PSC rotation
+
+A free personal api.data.gov key is capped at ~10 requests/day, and each PSC/FSC code you add to a query doesn't cost more requests — but a *broad* code list needs more pages (`max_pages`) to see past the newest few results, and each page is a request. `psc_codes` alone can't cover a big curated code list daily without either narrowing it or spending most of the day's quota on one run.
+
+The rotation splits a big PSC/FSC list into 7 weekday groups in `config.json`'s `psc_rotation` map (`mon`..`sun`, `date.weekday()` order). `python -m govscout fetch` picks *today's* group via `Config.todays_psc_codes()` (falls back to `psc_codes` if `psc_rotation` is empty) and queries only that group, capped at `max_pages: 3` — about 3 requests/day, leaving headroom in the ~10/day budget for manual re-runs or retries.
+
+Since each day only touches a slice of the full list, `fetch --json` **merges** today's results into the existing dashboard JSON instead of overwriting it (`export_json_accumulated` in `report.py`): dedup by `sol_number`, newest `fetched_at` wins. A freshness pass then drops anything whose `response_deadline` has passed, or — if there's no deadline — that was posted more than 45 days ago (`apply_freshness`). So the board fills in across Mon–Sun as each group gets its turn, and stays bounded and current on its own as old notices age out — no separate cleanup job needed.
+
+**With an entity-role key** (~1000 requests/day, see [api.data.gov](https://api.data.gov/signup/)), the rotation is unnecessary: clear `psc_rotation` (or leave it empty), put the full code list in `psc_codes`, and raise `max_pages` to cover it — every day queries everything. The accumulate + freshness merge logic stays useful regardless (it's what keeps a growing `psc_codes` list from producing an ever-growing, increasingly-stale board), so there's no need to revert it.
 
 ### Tests
 
 ```bash
-pytest -q     # 58 tests: detection, extraction, storage/dedupe, end-to-end demo pipeline, SAM.gov pagination cap
+pytest -q     # 86 tests: detection, extraction, storage/dedupe, end-to-end demo pipeline,
+              # SAM.gov pagination cap, weekday PSC rotation selection, accumulate+freshness merge
 ```
 
 No test touches the network; the demo-mode smoke test runs the whole CLI against a temp directory.
@@ -155,7 +167,8 @@ No test touches the network; the demo-mode smoke test runs the whole CLI against
 - **Same interface for demo and live.** `SampleSource` and `SamGovSource` both implement `Source.fetch()/normalize()`, so the offline demo exercises the real pipeline — not a scripted mock of it.
 - **Dedupe at the storage layer.** `UNIQUE(sol_number)` + upsert means amendments update in place and reruns are idempotent; `first_seen` is preserved so `new_since()` can power incremental digests.
 - **Polite live client.** 0.5 s between pages, 30 s timeouts, exponential backoff on 429/5xx, clear error (with signup instructions) when the API key is missing.
-- **Quota-capped pagination.** `SamGovSource` stops after `max_pages` pages (100 records each); `Config.max_pages` defaults to 1 so a normal `fetch` run spends exactly one request. Personal api.data.gov keys without an entity role are limited to ~10 requests/day — one request per run leaves headroom for retries/manual runs. An entity role raises the quota to ~1000/day; raise `max_pages` in `config.json` once you have one.
+- **Quota-capped pagination.** `SamGovSource` stops after `max_pages` pages (100 records each). Personal api.data.gov keys without an entity role are limited to ~10 requests/day; the shipped `config.json` pins `max_pages: 3` and rotates PSC/FSC groups by weekday (see "Free-tier PSC rotation" above) so a normal `fetch` run spends ~3 requests, leaving headroom for retries/manual runs. An entity role raises the quota to ~1000/day; drop `psc_rotation` and raise `max_pages` once you have one.
+- **Accumulate, don't replace.** `fetch --json` merges into the existing dashboard JSON and drops stale rows (`export_json_accumulated`/`apply_freshness` in `report.py`) instead of overwriting it with just this run's results — required for the rotation to build up a full board over the week, and harmless overhead otherwise.
 - **Pure core logic.** Detection and extraction are side-effect-free functions with pinned unit tests — the part of the system most likely to evolve per client is the part easiest to change safely.
 
 ## Roadmap

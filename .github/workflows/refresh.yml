@@ -5,9 +5,16 @@ name: Refresh dashboard data
 #
 # Quota note: SAM_API_KEY is expected to be a personal api.data.gov key
 # without an entity role, capped at ~10 requests/day. pipeline/config.json
-# pins max_pages to 1, so a normal run spends exactly one request. If you
-# add an entity role to the key (raises the quota to ~1000/day), you can
-# raise max_pages in pipeline/config.json accordingly.
+# defines a weekly psc_rotation (Mon-Sun PSC/FSC groups) and pins max_pages
+# to 3, so a normal run queries only today's group and spends ~3 requests —
+# comfortably inside the daily budget with headroom for manual re-runs.
+# Results accumulate into dashboard.json across the week (see
+# export_json_accumulated in report.py) instead of replacing it, so the
+# board fills up over Mon-Sun as each group gets its turn; stale/expired
+# solicitations are dropped automatically. See "Free-tier PSC rotation" in
+# README.md. If you add an entity role to the key (raises the quota to
+# ~1000/day), you can drop psc_rotation and query psc_codes directly every
+# day — raise max_pages in pipeline/config.json accordingly.
 #
 # Scheduling gotcha: GitHub disables scheduled workflows after 60 days of
 # repository inactivity (no pushes/commits). If daily runs silently stop,

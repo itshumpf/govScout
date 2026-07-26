@@ -12,11 +12,12 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 from . import __version__
 from .config import Config, load_config, save_config
-from .report import export_csv, export_json, render_digest
+from .report import export_csv, export_json, export_json_accumulated, render_digest
 from .sources.base import Source
 from .sources.samgov import API_KEY_HELP, SamGovError, SamGovSource
 from .sources.sample import SampleSource
@@ -26,13 +27,20 @@ from .store import Store
 def _run_pipeline(
     source: Source,
     config: Config,
+    psc_codes: list[str],
     csv_path: str | None,
     json_path: str | None,
     want_digest: bool,
     source_label: str,
+    accumulate: bool = False,
 ) -> int:
-    """Shared fetch -> normalize -> store -> report pipeline for demo/fetch."""
-    raw = source.fetch(config.psc_codes, config.days_back)
+    """Shared fetch -> normalize -> store -> report pipeline for demo/fetch.
+
+    ``accumulate`` selects export_json_accumulated (merge into the existing
+    dashboard JSON + drop stale rows) instead of export_json (overwrite with
+    a snapshot of just this run) — see the "fetch" vs "demo" callers.
+    """
+    raw = source.fetch(psc_codes, config.days_back)
     sols = [source.normalize(record) for record in raw]
     unique = {sol.sol_number for sol in sols}
 
@@ -51,8 +59,12 @@ def _run_pipeline(
         out = export_csv(sols, csv_path)
         print(f"CSV:    wrote {len(sols)} rows to {out}")
     if json_path:
-        out = export_json(sols, json_path, source_label, stored=total)
-        print(f"JSON:   wrote {len(sols)} records to {out}")
+        if accumulate:
+            out = export_json_accumulated(sols, json_path, source_label)
+            print(f"JSON:   merged {len(sols)} fetched records into accumulated {out}")
+        else:
+            out = export_json(sols, json_path, source_label, stored=total)
+            print(f"JSON:   wrote {len(sols)} records to {out}")
     if want_digest:
         print()
         print(render_digest(sols))
@@ -76,6 +88,7 @@ def cmd_demo(args: argparse.Namespace) -> int:
     return _run_pipeline(
         SampleSource(),
         config,
+        psc_codes=config.psc_codes,
         csv_path=_export_path(args.csv, config, "demo", "csv"),
         json_path=_export_path(args.json, config, "demo", "json"),
         want_digest=args.digest,
@@ -84,20 +97,32 @@ def cmd_demo(args: argparse.Namespace) -> int:
 
 
 def cmd_fetch(args: argparse.Namespace) -> int:
-    """Run the pipeline against the live SAM.gov Opportunities API."""
+    """Run the pipeline against the live SAM.gov Opportunities API.
+
+    Uses today's weekday PSC/FSC group from config.psc_rotation (falling
+    back to config.psc_codes when no rotation is configured) — see the
+    "Free-tier PSC rotation" section in README.md — and merges results into
+    the existing dashboard JSON rather than overwriting it.
+    """
     api_key = args.api_key or os.environ.get("SAM_API_KEY")
     if not api_key:
         print(API_KEY_HELP, file=sys.stderr)
         return 2
     config = load_config(args.config)
+    psc_codes = config.todays_psc_codes()
+    if config.psc_rotation:
+        weekday = datetime.now(timezone.utc).strftime("%A")
+        print(f"PSC rotation: {weekday} group — {len(psc_codes)} codes: {', '.join(psc_codes) or '(none)'}")
     try:
         return _run_pipeline(
             SamGovSource(api_key, max_pages=config.max_pages),
             config,
+            psc_codes=psc_codes,
             csv_path=_export_path(args.csv, config, "fetch", "csv"),
             json_path=_export_path(args.json, config, "fetch", "json"),
             want_digest=args.digest,
             source_label="sam.gov",
+            accumulate=True,
         )
     except SamGovError as exc:
         print(f"Error: {exc}", file=sys.stderr)

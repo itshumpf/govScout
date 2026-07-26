@@ -5,8 +5,10 @@ import json
 
 import pytest
 
-from govscout.__main__ import main
+from govscout.__main__ import _run_pipeline, main
+from govscout.config import Config
 from govscout.report import TIER_HIGH, TIER_MEDIUM
+from govscout.sources.sample import SampleSource
 from govscout.store import Store
 
 
@@ -187,3 +189,78 @@ class TestOtherCommands:
         assert main(["fetch"]) == 2
         err = capsys.readouterr().err
         assert "api.data.gov" in err
+
+
+class TestAccumulateWiring:
+    """Exercises _run_pipeline's accumulate=True path (the same wiring cmd_fetch
+    uses) through the real CLI pipeline, offline via SampleSource, to prove
+    successive "weekday group" runs build up rather than replace the board.
+
+    The bundled sample fixtures carry 2025 response deadlines, so "today" is
+    pinned to a date in that window — otherwise the freshness pass (correctly)
+    drops every fixture row as expired, which isn't what these tests probe.
+    """
+
+    def test_successive_runs_with_different_psc_groups_accumulate(self, workdir, monkeypatch):
+        import datetime as _dt
+
+        monkeypatch.setattr("govscout.report._utc_today", lambda: _dt.date(2025, 3, 1))
+        config = Config(days_back=30, db_path="a.db", output_dir="out", max_pages=1)
+        json_path = str(workdir / "dashboard.json")
+
+        # "Monday": one PSC group.
+        rc = _run_pipeline(
+            SampleSource(),
+            config,
+            psc_codes=["5340"],
+            csv_path=None,
+            json_path=json_path,
+            want_digest=False,
+            source_label="sam.gov",
+            accumulate=True,
+        )
+        assert rc == 0
+        data = json.loads((workdir / "dashboard.json").read_text(encoding="utf-8"))
+        first_ids = {s["sol_number"] for s in data["solicitations"]}
+        assert first_ids  # non-empty
+
+        # "Tuesday": a different PSC group, same dashboard file.
+        rc = _run_pipeline(
+            SampleSource(),
+            config,
+            psc_codes=["5962"],
+            csv_path=None,
+            json_path=json_path,
+            want_digest=False,
+            source_label="sam.gov",
+            accumulate=True,
+        )
+        assert rc == 0
+        data = json.loads((workdir / "dashboard.json").read_text(encoding="utf-8"))
+        second_ids = {s["sol_number"] for s in data["solicitations"]}
+
+        # Tuesday's group is additive, not a replacement of Monday's.
+        assert first_ids < second_ids
+        assert second_ids - first_ids  # Tuesday actually added something new
+
+    def test_plain_export_json_still_overwrites_for_demo_mode(self, workdir):
+        # accumulate=False (demo's default) must keep the old snapshot behavior.
+        config = Config(days_back=30, db_path="a.db", output_dir="out", max_pages=1)
+        json_path = str(workdir / "demo.json")
+        _run_pipeline(
+            SampleSource(), config, psc_codes=["5340"], csv_path=None,
+            json_path=json_path, want_digest=False, source_label="demo",
+        )
+        first = json.loads((workdir / "demo.json").read_text(encoding="utf-8"))
+        first_ids = {s["sol_number"] for s in first["solicitations"]}
+        assert first_ids == {"SPE4A7-25-R-0412"}  # the 5340 fixture (incl. its amendment record)
+
+        _run_pipeline(
+            SampleSource(), config, psc_codes=["5962"], csv_path=None,
+            json_path=json_path, want_digest=False, source_label="demo",
+        )
+        second = json.loads((workdir / "demo.json").read_text(encoding="utf-8"))
+        second_ids = {s["sol_number"] for s in second["solicitations"]}
+        # Overwritten, not merged: only the second run's PSC group is present.
+        assert second_ids == {"SPE4A6-25-R-1187"}
+        assert second_ids != first_ids
