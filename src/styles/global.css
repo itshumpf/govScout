@@ -411,3 +411,138 @@ a:hover { text-decoration: underline; }
   .result-count { width: 100%; margin-left: 0; }
   .filter-bar { position: static; }
 }
+
+/* ---------- trend analytics ---------- */
+
+.trends-section {
+  margin: 32px 0 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.trends-header {
+  margin-bottom: 20px;
+}
+
+.trends-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trends-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.trends-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .trends-grid { grid-template-columns: 1fr; }
+}
+
+.trend-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.trend-card-title {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+/* Weekday Bar Chart */
+.weekday-bars {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  align-items: flex-end;
+  height: 120px;
+  padding-top: 16px;
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.bar-count {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.bar-fill {
+  width: 100%;
+  max-width: 28px;
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(245, 166, 35, 0.25) 100%);
+  border-radius: 4px 4px 0 0;
+  min-height: 4px;
+  transition: height 0.3s ease;
+}
+
+.bar-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-top: 6px;
+}
+
+/* FSC Breakdown List */
+.fsc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fsc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.fsc-code-badge {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  margin-right: 8px;
+}
+
+.fsc-name {
+  color: var(--text-muted);
+  flex-grow: 1;
+}
+
+.fsc-count-badge {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--accent);
+}
+

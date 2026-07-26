@@ -68,6 +68,48 @@ const generatedLabel = generatedDate.toLocaleString("en-US", {
         <StatCard value={stats.low} label="Low" variant="tier-low" />
       </section>
 
+      {stats.by_weekday && stats.by_fsc && (
+        <section class="trends-section">
+          <div class="trends-header">
+            <h2 class="trends-title">📊 Procurement Velocity & FSC Supply Trends</h2>
+            <p class="trends-subtitle">Automated weekly release volume patterns across Federal Supply Codes</p>
+          </div>
+          <div class="trends-grid">
+            <div class="trend-card">
+              <div class="trend-card-title">Release Volume by Day of Week</div>
+              <div class="weekday-bars">
+                {Object.entries(stats.by_weekday).map(([day, count]) => {
+                  const maxCount = Math.max(...Object.values(stats.by_weekday as Record<string, number>), 1);
+                  const heightPercent = Math.max(12, Math.round(((count as number) / maxCount) * 100));
+                  return (
+                    <div class="bar-col">
+                      <span class="bar-count">{count as number}</span>
+                      <div class="bar-fill" style={`height: ${heightPercent}%`} />
+                      <span class="bar-label">{day}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div class="trend-card">
+              <div class="trend-card-title">Top Active Defense Supply Codes (FSC)</div>
+              <div class="fsc-list">
+                {(stats.by_fsc as Array<{ code: string; name: string; count: number }>).map((item) => (
+                  <div class="fsc-row">
+                    <div>
+                      <span class="fsc-code-badge">FSC {item.code}</span>
+                      <span class="fsc-name">{item.name}</span>
+                    </div>
+                    <span class="fsc-count-badge">{item.count}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       <div class="filter-bar">
         <input
           id="search"

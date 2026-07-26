@@ -70,8 +70,12 @@ def export_json(
     """
     ranked = sorted(sols, key=lambda s: s.pricing_score, reverse=True)
     tiers = {"high": 0, "medium": 0, "low": 0}
+    sol_rows = [{**sol.to_row(), "pricing_flags": list(sol.pricing_flags)} for sol in ranked]
     for sol in sols:
         tiers[_tier(sol.pricing_score).lower()] += 1
+
+    trends = _compute_trend_stats(sol_rows)
+
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source": source,
@@ -80,11 +84,9 @@ def export_json(
             "stored": stored,
             "with_pricing_signals": sum(1 for s in sols if s.pricing_flags),
             **tiers,
+            **trends,
         },
-        "solicitations": [
-            {**sol.to_row(), "pricing_flags": list(sol.pricing_flags)}
-            for sol in ranked
-        ],
+        "solicitations": sol_rows,
     }
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -184,6 +186,8 @@ def export_json_accumulated(
     for row in cleaned:
         tiers[_tier(int(row.get("pricing_score") or 0)).lower()] += 1
 
+    trends = _compute_trend_stats(cleaned)
+
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source": source,
@@ -192,6 +196,7 @@ def export_json_accumulated(
             "stored": len(cleaned),
             "with_pricing_signals": sum(1 for row in cleaned if row.get("pricing_flags")),
             **tiers,
+            **trends,
         },
         "solicitations": ranked,
     }
