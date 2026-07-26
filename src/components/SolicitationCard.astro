@@ -101,7 +101,15 @@ const searchText = [sol.title, sol.agency, sol.sol_number, sol.nsns]
 
   {sol.url && (
     <div class="card-link">
-      <a href={sol.url} target="_blank" rel="noopener noreferrer">
+      <a
+        href={
+          sol.url && sol.url !== "https://sam.gov" && sol.url !== "https://sam.gov/"
+            ? sol.url
+            : `https://sam.gov/search/?index=opp&keywords=${encodeURIComponent(sol.sol_number)}`
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         View solicitation
       </a>
     </div>

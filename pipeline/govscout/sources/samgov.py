@@ -138,15 +138,28 @@ class SamGovSource(Source):
         """Map SAM.gov API fields onto the common raw-dict shape."""
         agency_path = opp.get("fullParentPathName") or ""
         agency = agency_path.split(".")[-1].strip() if agency_path else ""
+        sol_num = opp.get("solicitationNumber") or opp.get("noticeId") or ""
+        notice_id = opp.get("noticeId") or ""
+        ui_link = opp.get("uiLink") or ""
+
+        if ui_link and ui_link.rstrip("/") != "https://sam.gov":
+            target_url = ui_link
+        elif notice_id:
+            target_url = f"https://sam.gov/workspace/contract/opp/{notice_id}/view"
+        elif sol_num:
+            target_url = f"https://sam.gov/search/?index=opp&keywords={sol_num}"
+        else:
+            target_url = "https://sam.gov"
+
         return {
-            "sol_number": opp.get("solicitationNumber") or opp.get("noticeId") or "",
+            "sol_number": sol_num,
             "title": opp.get("title") or "",
             "agency": agency,
             "psc_code": opp.get("classificationCode") or None,
             "posted_date": (opp.get("postedDate") or "")[:10],
             "response_deadline": (opp.get("responseDeadLine") or "")[:10] or None,
             "description": opp.get("description") or "",
-            "url": opp.get("uiLink") or None,
+            "url": target_url,
             "attachments": [a.get("name", "") for a in (opp.get("attachments") or []) if isinstance(a, dict)],
         }
 
