@@ -21,7 +21,7 @@
 
 * { box-sizing: border-box; }
 
-html { color-scheme: dark; }
+html { color-scheme: dark; scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -544,5 +544,35 @@ a:hover { text-decoration: underline; }
   font-family: var(--mono);
   font-weight: 700;
   color: var(--accent);
+}
+
+.header-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.trends-jump-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.trends-jump-btn:hover {
+  background: rgba(245, 166, 35, 0.25);
+  color: #ffffff;
+  text-decoration: none;
 }
 

@@ -55,7 +55,10 @@ const generatedLabel = generatedDate.toLocaleString("en-US", {
           Federal solicitations scored for online-pricing signals — NSN, part
           number, and quantity line items extracted and ranked for quoting.
         </p>
-        <p class="generated">generated {generatedLabel}</p>
+        <div class="header-meta-row">
+          <p class="generated">generated {generatedLabel}</p>
+          <a href="#trends" class="trends-jump-btn">📊 View Procurement Trends ↓</a>
+        </div>
       </div>
     </header>
 
@@ -69,7 +72,7 @@ const generatedLabel = generatedDate.toLocaleString("en-US", {
       </section>
 
       {stats.by_weekday && stats.by_fsc && (
-        <section class="trends-section">
+        <section class="trends-section" id="trends">
           <div class="trends-header">
             <h2 class="trends-title">📊 Procurement Velocity & FSC Supply Trends</h2>
             <p class="trends-subtitle">Automated weekly release volume patterns across Federal Supply Codes</p>
