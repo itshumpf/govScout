@@ -192,6 +192,34 @@ class TestOtherCommands:
         err = capsys.readouterr().err
         assert "api.data.gov" in err
 
+    def test_fetch_respects_cross_run_rate_limit_backoff(self, workdir, capsys, monkeypatch):
+        """cmd_fetch wires config.rate_limit_state_path through to SamGovSource —
+        a recent 429 recorded there must block a second `fetch` without it
+        ever touching the network, same as the direct SamGovSource tests
+        prove at the unit level."""
+        from govscout import ratelimit
+        from govscout.sources.samgov import SamGovSource
+
+        monkeypatch.setenv("SAM_API_KEY", "x")
+        state_path = workdir / "rate_limit_state.json"
+        (workdir / "config.json").write_text(
+            json.dumps({"rate_limit_state_path": str(state_path)}), encoding="utf-8"
+        )
+        ratelimit.record_429(state_path)  # simulate a 429 from an earlier run
+
+        calls = []
+        real_get = SamGovSource._get
+
+        def spying_get(self, params):
+            calls.append(1)
+            return real_get(self, params)
+
+        monkeypatch.setattr(SamGovSource, "_get", spying_get)
+
+        assert main(["fetch"]) == 1
+        assert calls == []  # blocked before any request was made
+        assert "cooling down" in capsys.readouterr().err
+
 
 class TestSyncCommand:
     """CLI wiring for `sync` — the coverage-ledger mechanism end to end,
@@ -200,9 +228,10 @@ class TestSyncCommand:
     class _FakeSamGovSource:
         """Stub SamGovSource: same constructor/fetch_range/normalize shape."""
 
-        def __init__(self, api_key, session=None, max_pages=1):
+        def __init__(self, api_key, session=None, max_pages=1, state_path=None):
             self.api_key = api_key
             self.max_pages = max_pages
+            self.state_path = state_path
 
         def fetch_range(self, psc_codes, posted_from, posted_to):
             code = psc_codes[0]

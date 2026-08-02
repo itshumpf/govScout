@@ -30,6 +30,14 @@ name: Refresh dashboard data
 # manual-dispatch-only for now (provide the "slices" input below) — the
 # daily schedule still runs the old `fetch` step until the tracked_codes
 # list is confirmed and a real run has been verified.
+#
+# Cross-run 429 backoff: a live rate limit is recorded to
+# pipeline/rate_limit_state.json (govscout/ratelimit.py) and committed even
+# when the step "fails", so the NEXT run — scheduled, or a human re-clicking
+# "Run workflow" — sees it and skips straight to a no-op instead of burning
+# another request just to rediscover the same 429. 24h fixed backoff from
+# the 429 (not "until UTC midnight"), since SAM.gov doesn't publicly
+# document exactly when/how the quota resets.
 
 on:
   schedule:
@@ -83,28 +91,41 @@ jobs:
 
       - name: Check for changes
         id: diff
-        if: steps.fetch.outcome == 'success' || steps.sync.outcome == 'success'
+        if: always()
         run: |
+          # Always check, not gated on fetch/sync success: a live 429 still
+          # writes pipeline/rate_limit_state.json even though the step
+          # "failed", and that marker has to get committed or the next run
+          # (or a human re-clicking "run workflow") has no memory of it and
+          # burns another request just to rediscover the same rate limit.
+          # dashboard.json/coverage_ledger.csv are only ever written after a
+          # genuinely successful fetch — the code never reaches those writes
+          # on a path that raises first — so checking unconditionally here
+          # doesn't risk committing partial/failed data.
+          #
           # git status --porcelain (not `git diff --quiet`) so this also
-          # catches pipeline/coverage_ledger.csv on the very first sync run,
-          # when it's a brand-new untracked file rather than a modified one
-          # — `git diff` alone is blind to untracked files.
-          if [ -n "$(git status --porcelain -- src/data/dashboard.json pipeline/coverage_ledger.csv)" ]; then
+          # catches a brand-new untracked file (coverage_ledger.csv or
+          # rate_limit_state.json on their first-ever write) — `git diff`
+          # alone is blind to untracked files.
+          if [ -n "$(git status --porcelain -- src/data/dashboard.json pipeline/coverage_ledger.csv pipeline/rate_limit_state.json)" ]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit and push updated data
-        if: (steps.fetch.outcome == 'success' || steps.sync.outcome == 'success') && steps.diff.outputs.changed == 'true'
+        if: always() && steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/dashboard.json
-          # Only present after a `sync` run (the fetch path never creates it)
+          # Only present after a `sync` run, or after a live 429, respectively
           # — `git add` errors on a pathspec that matches nothing.
           if [ -f pipeline/coverage_ledger.csv ]; then
             git add pipeline/coverage_ledger.csv
+          fi
+          if [ -f pipeline/rate_limit_state.json ]; then
+            git add pipeline/rate_limit_state.json
           fi
           git commit -m "chore: refresh dashboard data from SAM.gov"
           git push

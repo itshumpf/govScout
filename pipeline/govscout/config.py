@@ -99,6 +99,11 @@ class Config:
         leaving headroom for the scheduled `fetch` step (<=max_pages
         requests) on days both run, plus a manual retry. Tune once you're
         actually running this — see sources/samgov.py's RATE_LIMIT_MSG.
+    rate_limit_state_path: where the last-429 timestamp is persisted (see
+        ratelimit.py) — committed to the repo like ledger_path, since a
+        fresh checkout otherwise has no memory of a previous run's 429 and
+        will burn another request just to rediscover it. Shared by both
+        `fetch` and `sync`, since they draw from the same daily quota.
     """
 
     psc_codes: list[str] = field(default_factory=list)
@@ -112,6 +117,7 @@ class Config:
     ledger_path: str = "coverage_ledger.csv"
     sync_max_pages: int = 1
     default_slices_per_run: int = 5
+    rate_limit_state_path: str = "rate_limit_state.json"
 
     def todays_psc_codes(self, today: date | None = None) -> list[str]:
         """PSC/FSC codes to query for ``today`` (UTC by default).

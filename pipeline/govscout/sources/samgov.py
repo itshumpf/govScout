@@ -8,9 +8,11 @@ from __future__ import annotations
 
 import time
 from datetime import date, datetime, timedelta, timezone
+from pathlib import Path
 
 import requests
 
+from .. import ratelimit
 from ..models import Solicitation
 from .base import Source, enrich_solicitation
 
@@ -71,6 +73,13 @@ class SamGovSource(Source):
     single request. An entity-role key is expected to raise the quota to
     ~1000/day (that figure itself is still an unconfirmed estimate); raise
     ``max_pages`` accordingly once you have one.
+
+    state_path, if given, persists the timestamp of the last confirmed 429
+    (see ratelimit.py) and makes ``fetch_range`` refuse to make a live
+    request — no HTTP call at all — while still within the 24h cooldown.
+    Without this, a fresh GitHub Actions checkout (or a human re-running the
+    workflow a few times) has no memory of an earlier run's 429 and just
+    burns another request to re-discover the same rate limit.
     """
 
     name = "sam.gov"
@@ -80,6 +89,7 @@ class SamGovSource(Source):
         api_key: str,
         session: requests.Session | None = None,
         max_pages: int = 1,
+        state_path: str | Path | None = None,
     ) -> None:
         if not api_key:
             raise SamGovError(API_KEY_HELP)
@@ -87,6 +97,7 @@ class SamGovSource(Source):
         self.session = session or requests.Session()
         self.session.headers.update({"User-Agent": "govscout/0.1.0"})
         self.max_pages = max_pages
+        self.state_path = state_path
 
     # ------------------------------------------------------------------ fetch
 
@@ -107,7 +118,20 @@ class SamGovSource(Source):
         docstring for the daily-quota rationale behind the default. This is
         the primitive both the weekday-rotation ``fetch`` and the coverage
         ledger's per-slice (code, month) backfill build on.
+
+        Raises ``SamGovRateLimitError`` immediately, without any HTTP
+        request, if ``state_path`` shows a 429 within the last 24h.
         """
+        if self.state_path is not None:
+            state = ratelimit.load(self.state_path)
+            if state.cooling_down():
+                raise SamGovRateLimitError(
+                    f"Skipping SAM.gov request: still cooling down from a rate limit hit at "
+                    f"{state.last_429_at.isoformat()} (24h backoff, retry after "
+                    f"{state.retry_after().isoformat()}). No live request made — this doesn't "
+                    f"spend any of today's quota."
+                )
+
         params: dict[str, str | int] = {
             "api_key": self.api_key,
             "postedFrom": posted_from.strftime("%m/%d/%Y"),
@@ -129,6 +153,9 @@ class SamGovSource(Source):
                 break
             params["offset"] = int(params["offset"]) + _PAGE_LIMIT
             time.sleep(_PAGE_DELAY)
+
+        if self.state_path is not None:
+            ratelimit.clear(self.state_path)
         return raw
 
     def _get(self, params: dict[str, str | int]) -> dict:
@@ -148,6 +175,8 @@ class SamGovSource(Source):
                 delay *= 2
                 continue
             if resp.status_code == 429:
+                if self.state_path is not None:
+                    ratelimit.record_429(self.state_path)
                 raise SamGovRateLimitError(RATE_LIMIT_MSG)
             if resp.status_code in _RETRY_STATUSES:
                 if attempt == _MAX_RETRIES:

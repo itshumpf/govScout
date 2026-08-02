@@ -117,7 +117,7 @@ def cmd_fetch(args: argparse.Namespace) -> int:
         print(f"PSC rotation: {weekday} group — {len(psc_codes)} codes: {', '.join(psc_codes) or '(none)'}")
     try:
         return _run_pipeline(
-            SamGovSource(api_key, max_pages=config.max_pages),
+            SamGovSource(api_key, max_pages=config.max_pages, state_path=config.rate_limit_state_path),
             config,
             psc_codes=psc_codes,
             csv_path=_export_path(args.csv, config, "fetch", "csv"),
@@ -157,7 +157,7 @@ def cmd_sync(args: argparse.Namespace) -> int:
     ledger = CoverageLedger.load(ledger_path)
     n = args.slices if args.slices is not None else config.default_slices_per_run
 
-    source = SamGovSource(api_key, max_pages=config.sync_max_pages)
+    source = SamGovSource(api_key, max_pages=config.sync_max_pages, state_path=config.rate_limit_state_path)
 
     def fetch_slice(slc: Slice) -> list[dict]:
         posted_from, posted_to = slc.posted_range(today)

@@ -13,6 +13,7 @@
   "ledger_path": "coverage_ledger.csv",
   "sync_max_pages": 1,
   "default_slices_per_run": 5,
+  "rate_limit_state_path": "rate_limit_state.json",
   "psc_rotation": {
     "mon": ["5305", "5306", "5307", "5310", "5315", "5320", "5325", "5330", "5335", "5340", "5342"],
     "tue": ["5360", "5365", "3110", "3120", "3130", "5905", "5910", "5915", "5920", "5925"],
