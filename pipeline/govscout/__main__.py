@@ -3,6 +3,7 @@
 Usage:
     python -m govscout demo [--config PATH] [--csv [PATH]] [--json [PATH]] [--digest]
     python -m govscout fetch (--api-key KEY | env SAM_API_KEY) [--config PATH] [--csv [PATH]] [--json [PATH]] [--digest]
+    python -m govscout sync (--api-key KEY | env SAM_API_KEY) [--config PATH] [--json [PATH]] [--slices N]
     python -m govscout digest [--config PATH]
     python -m govscout init-config [PATH]
 """
@@ -17,9 +18,10 @@ from pathlib import Path
 
 from . import __version__
 from .config import Config, load_config, save_config
-from .report import export_csv, export_json, export_json_accumulated, render_digest
+from .coverage import CoverageLedger, QuotaExceeded, Slice, build_universe, run_backfill
+from .report import export_csv, export_json, export_json_accumulated, export_json_by_slice, render_digest
 from .sources.base import Source
-from .sources.samgov import API_KEY_HELP, SamGovError, SamGovSource
+from .sources.samgov import API_KEY_HELP, SamGovError, SamGovRateLimitError, SamGovSource
 from .sources.sample import SampleSource
 from .store import Store
 
@@ -125,8 +127,63 @@ def cmd_fetch(args: argparse.Namespace) -> int:
             accumulate=True,
         )
     except SamGovError as exc:
-        print(f"Error: {exc}", file=sys.stderr)
+        print(f"::error::SAM.gov fetch failed: {exc}", file=sys.stderr)
         return 1
+
+
+def cmd_sync(args: argparse.Namespace) -> int:
+    """Run the coverage-ledger mechanism: select next slices, fetch, replace, advance.
+
+    One selection function drives both backfill and steady-state refresh —
+    see coverage.py's module docstring. Processes up to --slices (or
+    config.default_slices_per_run) slices, replaces exactly those slices'
+    records in the dashboard JSON (export_json_by_slice), and advances the
+    ledger only for slices that actually succeeded. A SAM.gov rate limit
+    stops the run cleanly rather than burning the rest of the selection on
+    requests that would also be rejected.
+    """
+    api_key = args.api_key or os.environ.get("SAM_API_KEY")
+    if not api_key:
+        print(API_KEY_HELP, file=sys.stderr)
+        return 2
+    config = load_config(args.config)
+    if not config.tracked_codes:
+        print("No tracked_codes configured — nothing to sync. See config.json's tracked_codes.", file=sys.stderr)
+        return 2
+
+    today = datetime.now(timezone.utc).date()
+    universe = build_universe(config.tracked_codes, config.lookback_months, today)
+    ledger_path = Path(config.ledger_path)
+    ledger = CoverageLedger.load(ledger_path)
+    n = args.slices if args.slices is not None else config.default_slices_per_run
+
+    source = SamGovSource(api_key, max_pages=config.sync_max_pages)
+
+    def fetch_slice(slc: Slice) -> list[dict]:
+        posted_from, posted_to = slc.posted_range(today)
+        try:
+            return source.fetch_range([slc.code], posted_from, posted_to)
+        except SamGovRateLimitError as exc:
+            raise QuotaExceeded(str(exc)) from exc
+
+    result, sols_by_slice = run_backfill(ledger, universe, n, fetch_slice, source.normalize)
+    ledger.save(ledger_path)
+
+    total_records = sum(len(sols) for sols in sols_by_slice.values())
+    summary = f"Sync: {result.completed}/{result.requested} slices completed ({total_records} records)"
+    if result.failed:
+        summary += f", {result.failed} failed (ledger left stale — retried next run)"
+    if result.stopped_reason == "quota":
+        summary += " — stopped early: SAM.gov quota reached"
+    print(summary)
+
+    if sols_by_slice:
+        json_path = _export_path(args.json, config, "sync", "json")
+        if json_path:
+            out = export_json_by_slice(sols_by_slice, json_path, source="sam.gov")
+            print(f"JSON: replaced {len(sols_by_slice)} slice(s) in {out}")
+
+    return 0
 
 
 def cmd_digest(args: argparse.Namespace) -> int:
@@ -190,6 +247,26 @@ def build_parser() -> argparse.ArgumentParser:
     add_common(p_fetch)
     p_fetch.add_argument("--api-key", metavar="KEY", default=None, help="api.data.gov key (or set SAM_API_KEY)")
     p_fetch.set_defaults(func=cmd_fetch)
+
+    p_sync = sub.add_parser("sync", help="coverage-ledger backfill + refresh via SAM.gov Opportunities API v2")
+    p_sync.add_argument("--config", metavar="PATH", default=None, help="JSON config file (default: config.json if present)")
+    p_sync.add_argument(
+        "--json",
+        metavar="PATH",
+        nargs="?",
+        const="",
+        default=None,
+        help="export dashboard-ready JSON (PATH optional; defaults to out/sync.json)",
+    )
+    p_sync.add_argument("--api-key", metavar="KEY", default=None, help="api.data.gov key (or set SAM_API_KEY)")
+    p_sync.add_argument(
+        "--slices",
+        type=int,
+        default=None,
+        metavar="N",
+        help="number of slices to process this run (default: config.default_slices_per_run)",
+    )
+    p_sync.set_defaults(func=cmd_sync)
 
     p_digest = sub.add_parser("digest", help="render digest from the existing database")
     p_digest.add_argument("--config", metavar="PATH", default=None, help="JSON config file")

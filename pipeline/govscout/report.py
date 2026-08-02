@@ -12,6 +12,8 @@ from .models import ROW_FIELDS, Solicitation
 TIER_HIGH = 70
 TIER_MEDIUM = 40
 _TOP_PER_TIER = 5
+_TOP_FSC = 8
+_WEEKDAY_LABELS = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 FRESHNESS_MAX_AGE_DAYS = 45  # drop no-deadline rows older than this by posted_date
 
 
@@ -26,6 +28,34 @@ def _tier(score: int) -> str:
     if score >= TIER_MEDIUM:
         return "Medium"
     return "Low"
+
+
+def _compute_trend_stats(rows: list[dict]) -> dict:
+    """Compute the ``by_weekday``/``by_fsc`` trend stats shown on the dashboard.
+
+    ``by_weekday`` counts rows by the weekday of ``posted_date`` (Mon..Sun,
+    always present with 0 for days with no releases). ``by_fsc`` ranks the
+    top ``_TOP_FSC`` PSC/FSC codes by row count; there's no code->name
+    mapping in this codebase, so ``name`` is left blank rather than guessed.
+    Rows with missing/unparseable ``posted_date`` or no ``psc_code`` are
+    skipped for the respective stat.
+    """
+    by_weekday = {label: 0 for label in _WEEKDAY_LABELS}
+    fsc_counts: dict[str, int] = {}
+    for row in rows:
+        posted = row.get("posted_date")
+        if posted:
+            try:
+                by_weekday[_WEEKDAY_LABELS[date.fromisoformat(posted).weekday()]] += 1
+            except ValueError:
+                pass
+        code = row.get("psc_code")
+        if code:
+            fsc_counts[code] = fsc_counts.get(code, 0) + 1
+
+    top_fsc = sorted(fsc_counts.items(), key=lambda kv: kv[1], reverse=True)[:_TOP_FSC]
+    by_fsc = [{"code": code, "name": "", "count": count} for code, count in top_fsc]
+    return {"by_weekday": by_weekday, "by_fsc": by_fsc}
 
 
 def export_csv(sols: list[Solicitation], path: str | Path) -> Path:
@@ -145,6 +175,72 @@ def apply_freshness(
                     pass
         kept.append(row)
     return kept
+
+
+def export_json_by_slice(
+    sols_by_slice: dict[str, list[Solicitation]],
+    path: str | Path,
+    source: str,
+    today: date | None = None,
+    max_age_days: int = FRESHNESS_MAX_AGE_DAYS,
+) -> Path:
+    """Merge freshly-(re)fetched coverage slices into the dashboard JSON at ``path``.
+
+    Unlike :func:`export_json_accumulated` (which merges by sol_number and
+    never removes a row that fails to reappear), this *replaces* every row
+    tagged with a slice in ``sols_by_slice`` — dropping that slice's old rows
+    first, unconditionally, before adding the new ones. That's what makes
+    re-fetching a slice idempotent: a solicitation that vanished from
+    SAM.gov (cancelled, awarded, superseded) doesn't linger forever just
+    because it didn't reappear in this run's response, and re-running the
+    same slice twice with the same upstream data is a no-op on record count.
+
+    Rows outside the refetched slices — a different slice not touched this
+    run, or a legacy row with no ``slice_key`` from the older rotation-based
+    ``fetch`` — are left untouched. ``sols_by_slice`` should contain only
+    slices that actually succeeded this run (see ``coverage.run_backfill``);
+    a failed slice's existing rows must NOT be passed here, or its old data
+    would be dropped without being replaced.
+    """
+    path = Path(path)
+    existing_rows: list[dict] = []
+    if path.exists():
+        try:
+            existing_payload = json.loads(path.read_text(encoding="utf-8"))
+            existing_rows = list(existing_payload.get("solicitations") or [])
+        except (json.JSONDecodeError, OSError):
+            existing_rows = []
+
+    refetched_keys = set(sols_by_slice)
+    kept = [row for row in existing_rows if row.get("slice_key") not in refetched_keys]
+    for slice_key, sols in sols_by_slice.items():
+        for sol in sols:
+            kept.append({**sol.to_row(), "pricing_flags": list(sol.pricing_flags), "slice_key": slice_key})
+
+    cleaned = apply_freshness(kept, today=today, max_age_days=max_age_days)
+    ranked = sorted(cleaned, key=lambda row: row.get("pricing_score", 0), reverse=True)
+
+    tiers = {"high": 0, "medium": 0, "low": 0}
+    for row in cleaned:
+        tiers[_tier(int(row.get("pricing_score") or 0)).lower()] += 1
+    trends = _compute_trend_stats(cleaned)
+
+    fetched_count = sum(len(sols) for sols in sols_by_slice.values())
+    payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "source": source,
+        "stats": {
+            "fetched": fetched_count,
+            "stored": len(cleaned),
+            "with_pricing_signals": sum(1 for row in cleaned if row.get("pricing_flags")),
+            **tiers,
+            **trends,
+        },
+        "solicitations": ranked,
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    return path
 
 
 def export_json_accumulated(

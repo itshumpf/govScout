@@ -7,7 +7,7 @@ Requires a free api.data.gov key (SAM_API_KEY env var or --api-key).
 from __future__ import annotations
 
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import requests
 
@@ -20,13 +20,23 @@ _TIMEOUT = 30
 _PAGE_DELAY = 0.5  # seconds between page requests (politeness)
 _MAX_RETRIES = 3
 _RETRY_STATUSES = {500, 502, 503, 504}
-# 429 is NOT retried: free personal keys have a tiny daily quota (10 req/day),
-# and retrying a rate-limited request just burns the rest of the day's allowance.
+# 429 is NOT retried: personal keys have a small daily quota, and retrying a
+# rate-limited request just burns the rest of the day's allowance.
+#
+# CONFIRMED (Braeden, 2026-08-02): 10 requests/day for this key, a personal
+# key without an entity role. Not publicly documented — open.gsa.gov's
+# Opportunities API docs only say "Request per day are limited based on the
+# federal or non-federal or general roles" without a figure — but this one
+# is a real confirmed number, not the "~10, unconfirmed" guess this comment
+# used to carry. Expected to rise once Braeden's EIN/entity-role
+# verification comes through; nothing in the code needs to change for that
+# beyond raising sync_max_pages/max_pages in config.json when it happens.
 RATE_LIMIT_MSG = (
     "SAM.gov rate limit reached (HTTP 429).\n"
-    "Personal keys without an entity role are limited to ~10 requests/day.\n"
-    "The quota resets daily — try again later (and avoid repeated runs today,\n"
-    "since each run spends from the same daily allowance)."
+    "This key is capped at 10 requests/day (confirmed, not an estimate) until\n"
+    "an entity-role upgrade raises it. The quota resets daily — try again\n"
+    "later (and avoid repeated runs today, since each run spends from the\n"
+    "same daily allowance)."
 )
 
 # Guidance shown when no API key is available.
@@ -41,14 +51,25 @@ class SamGovError(RuntimeError):
     """Raised when the SAM.gov API cannot be queried successfully."""
 
 
+class SamGovRateLimitError(SamGovError):
+    """Raised specifically for HTTP 429 (daily quota exhausted).
+
+    A distinct subclass (rather than just SamGovError) so callers that need
+    to react differently to "quota's gone, stop everything" versus "this one
+    request failed for some other reason" can do so without string-matching
+    the message. Still catchable as a plain SamGovError for existing callers.
+    """
+
+
 class SamGovSource(Source):
     """Source adapter for the SAM.gov Opportunities API v2.
 
     max_pages caps how many 100-record pages ``fetch`` will request in a
     single run — each page is one HTTP request against the daily quota.
-    Personal api.data.gov keys without an entity role are limited to ~10
-    requests/day, so the default of 1 keeps a normal run to a single
-    request. An entity-role key raises the quota to ~1000/day; raise
+    Personal api.data.gov keys without an entity role are capped at 10
+    requests/day (confirmed), so the default of 1 keeps a normal run to a
+    single request. An entity-role key is expected to raise the quota to
+    ~1000/day (that figure itself is still an unconfirmed estimate); raise
     ``max_pages`` accordingly once you have one.
     """
 
@@ -72,14 +93,25 @@ class SamGovSource(Source):
     def fetch(self, psc_codes: list[str], days_back: int) -> list[dict]:
         """Fetch matching opportunities posted within the last ``days_back`` days.
 
-        Paginates up to ``self.max_pages`` pages (100 records each) — see the
-        class docstring for the daily-quota rationale behind the default.
+        Thin wrapper over :meth:`fetch_range` anchored to "today"; see that
+        method for pagination/quota behavior.
         """
         today = datetime.now(timezone.utc).date()
+        return self.fetch_range(psc_codes, today - timedelta(days=days_back), today)
+
+    def fetch_range(self, psc_codes: list[str], posted_from: date, posted_to: date) -> list[dict]:
+        """Fetch matching opportunities posted within an explicit date range.
+
+        ``posted_from``/``posted_to`` are ``datetime.date``. Paginates up to
+        ``self.max_pages`` pages (100 records each) — see the class
+        docstring for the daily-quota rationale behind the default. This is
+        the primitive both the weekday-rotation ``fetch`` and the coverage
+        ledger's per-slice (code, month) backfill build on.
+        """
         params: dict[str, str | int] = {
             "api_key": self.api_key,
-            "postedFrom": (today - timedelta(days=days_back)).strftime("%m/%d/%Y"),
-            "postedTo": today.strftime("%m/%d/%Y"),
+            "postedFrom": posted_from.strftime("%m/%d/%Y"),
+            "postedTo": posted_to.strftime("%m/%d/%Y"),
             "limit": _PAGE_LIMIT,
             "offset": 0,
         }
@@ -116,7 +148,7 @@ class SamGovSource(Source):
                 delay *= 2
                 continue
             if resp.status_code == 429:
-                raise SamGovError(RATE_LIMIT_MSG)
+                raise SamGovRateLimitError(RATE_LIMIT_MSG)
             if resp.status_code in _RETRY_STATUSES:
                 if attempt == _MAX_RETRIES:
                     raise SamGovError(f"SAM.gov returned HTTP {resp.status_code} after {_MAX_RETRIES} attempts")

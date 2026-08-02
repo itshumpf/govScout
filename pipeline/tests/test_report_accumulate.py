@@ -9,6 +9,7 @@ from govscout.models import Solicitation
 from govscout.report import (
     apply_freshness,
     export_json_accumulated,
+    export_json_by_slice,
     merge_solicitation_rows,
 )
 
@@ -186,3 +187,80 @@ class TestExportJsonAccumulated:
         assert data["stats"]["stored"] == 2
         # Ranked descending by pricing_score across the whole merged set.
         assert [s["sol_number"] for s in data["solicitations"]] == ["HIGH-1", "LOW-1"]
+
+
+class TestExportJsonBySlice:
+    """Idempotent replace-by-slice — the coverage ledger's export path."""
+
+    def test_first_run_writes_rows_tagged_with_slice_key(self, tmp_path):
+        path = tmp_path / "dashboard.json"
+        sols = {"5340:2026-01": [_sol("SOL-1", fetched_at="2026-01-05T00:00:00+00:00", response_deadline="2026-08-01")]}
+        export_json_by_slice(sols, path, source="sam.gov", today=_TODAY)
+        data = json.loads(path.read_text(encoding="utf-8"))
+        assert data["solicitations"][0]["slice_key"] == "5340:2026-01"
+        assert data["stats"]["fetched"] == 1
+        assert data["stats"]["stored"] == 1
+
+    def test_rerunning_same_slice_is_a_noop_on_record_count(self, tmp_path):
+        path = tmp_path / "dashboard.json"
+        sols = {
+            "5340:2026-01": [
+                _sol("SOL-1", fetched_at="2026-01-05T00:00:00+00:00", response_deadline="2026-08-01"),
+                _sol("SOL-2", fetched_at="2026-01-05T00:00:00+00:00", response_deadline="2026-08-01"),
+            ]
+        }
+        export_json_by_slice(sols, path, source="sam.gov", today=_TODAY)
+        export_json_by_slice(sols, path, source="sam.gov", today=_TODAY)  # identical re-fetch
+        data = json.loads(path.read_text(encoding="utf-8"))
+        assert data["stats"]["stored"] == 2  # not 4 — replaced, not appended
+
+    def test_record_missing_from_refetch_is_dropped_not_orphaned(self, tmp_path):
+        path = tmp_path / "dashboard.json"
+        first = {
+            "5340:2026-01": [
+                _sol("SOL-1", fetched_at="2026-01-05T00:00:00+00:00", response_deadline="2026-08-01"),
+                _sol("SOL-2", fetched_at="2026-01-05T00:00:00+00:00", response_deadline="2026-08-01"),
+            ]
+        }
+        export_json_by_slice(first, path, source="sam.gov", today=_TODAY)
+
+        # SOL-2 vanished from SAM.gov (cancelled/awarded) — the re-fetch of
+        # the same slice only returns SOL-1. Unlike merge-by-sol_number,
+        # SOL-2 must not linger just because it didn't reappear.
+        second = {"5340:2026-01": [_sol("SOL-1", fetched_at="2026-02-01T00:00:00+00:00", response_deadline="2026-08-01")]}
+        export_json_by_slice(second, path, source="sam.gov", today=_TODAY)
+
+        data = json.loads(path.read_text(encoding="utf-8"))
+        ids = {s["sol_number"] for s in data["solicitations"]}
+        assert ids == {"SOL-1"}
+
+    def test_other_slices_untouched_by_a_refetch(self, tmp_path):
+        path = tmp_path / "dashboard.json"
+        jan = {"5340:2026-01": [_sol("JAN-1", fetched_at="2026-01-05T00:00:00+00:00", response_deadline="2026-08-01")]}
+        export_json_by_slice(jan, path, source="sam.gov", today=_TODAY)
+
+        feb = {"5340:2026-02": [_sol("FEB-1", fetched_at="2026-02-05T00:00:00+00:00", response_deadline="2026-08-01")]}
+        export_json_by_slice(feb, path, source="sam.gov", today=_TODAY)
+
+        data = json.loads(path.read_text(encoding="utf-8"))
+        ids = {s["sol_number"] for s in data["solicitations"]}
+        assert ids == {"JAN-1", "FEB-1"}
+
+    def test_legacy_rows_without_slice_key_are_left_alone(self, tmp_path):
+        path = tmp_path / "dashboard.json"
+        path.write_text(
+            json.dumps(
+                {
+                    "generated_at": "2026-01-01T00:00:00+00:00",
+                    "source": "sam.gov",
+                    "stats": {},
+                    "solicitations": [_row(sol_number="LEGACY-1", response_deadline="2026-08-01")],
+                }
+            ),
+            encoding="utf-8",
+        )
+        new = {"5340:2026-01": [_sol("SOL-1", fetched_at="2026-01-05T00:00:00+00:00", response_deadline="2026-08-01")]}
+        export_json_by_slice(new, path, source="sam.gov", today=_TODAY)
+        data = json.loads(path.read_text(encoding="utf-8"))
+        ids = {s["sol_number"] for s in data["solicitations"]}
+        assert ids == {"LEGACY-1", "SOL-1"}

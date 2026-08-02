@@ -98,6 +98,8 @@ class TestJsonExport:
             "high",
             "medium",
             "low",
+            "by_weekday",
+            "by_fsc",
         }
         assert stats["fetched"] == 10
         assert stats["stored"] == 9  # unique rows in the DB after dedupe
@@ -189,6 +191,98 @@ class TestOtherCommands:
         assert main(["fetch"]) == 2
         err = capsys.readouterr().err
         assert "api.data.gov" in err
+
+
+class TestSyncCommand:
+    """CLI wiring for `sync` — the coverage-ledger mechanism end to end,
+    with SamGovSource stubbed so nothing touches the network."""
+
+    class _FakeSamGovSource:
+        """Stub SamGovSource: same constructor/fetch_range/normalize shape."""
+
+        def __init__(self, api_key, session=None, max_pages=1):
+            self.api_key = api_key
+            self.max_pages = max_pages
+
+        def fetch_range(self, psc_codes, posted_from, posted_to):
+            code = psc_codes[0]
+            return [
+                {
+                    "sol_number": f"{code}-{posted_from.isoformat()}-1",
+                    "title": "Bracket",
+                    "agency": "DLA Aviation",
+                    "psc_code": code,
+                    "posted_date": posted_from.isoformat(),
+                    "response_deadline": "2099-01-01",
+                    "description": "",
+                    "url": None,
+                    "attachments": [],
+                }
+            ]
+
+        def normalize(self, raw):
+            from govscout.sources.base import enrich_solicitation
+
+            return enrich_solicitation(raw)
+
+    def test_sync_without_key_errors_gracefully(self, workdir, capsys, monkeypatch):
+        monkeypatch.delenv("SAM_API_KEY", raising=False)
+        assert main(["sync"]) == 2
+        assert "api.data.gov" in capsys.readouterr().err
+
+    def test_sync_without_tracked_codes_errors_gracefully(self, workdir, capsys, monkeypatch):
+        monkeypatch.setenv("SAM_API_KEY", "x")
+        (workdir / "config.json").write_text(json.dumps({"tracked_codes": []}), encoding="utf-8")
+        assert main(["sync"]) == 2
+        assert "tracked_codes" in capsys.readouterr().err
+
+    def test_sync_writes_ledger_and_json_end_to_end(self, workdir, monkeypatch):
+        monkeypatch.setenv("SAM_API_KEY", "x")
+        monkeypatch.setattr("govscout.__main__.SamGovSource", self._FakeSamGovSource)
+        config = {
+            "tracked_codes": ["5340"],
+            "lookback_months": 2,
+            "ledger_path": "coverage_ledger.csv",
+            "default_slices_per_run": 1,
+            "max_pages": 1,
+        }
+        (workdir / "config.json").write_text(json.dumps(config), encoding="utf-8")
+        json_path = str(workdir / "dashboard.json")
+
+        rc = main(["sync", "--json", json_path])
+        assert rc == 0
+
+        ledger_rows = list(csv.DictReader((workdir / "coverage_ledger.csv").open(encoding="utf-8")))
+        assert len(ledger_rows) == 2  # lookback_months=2, one code
+        fetched = [r for r in ledger_rows if r["last_fetched"]]
+        assert len(fetched) == 1  # default_slices_per_run=1 — only one advanced
+
+        data = json.loads((workdir / "dashboard.json").read_text(encoding="utf-8"))
+        assert len(data["solicitations"]) == 1
+        assert data["solicitations"][0]["slice_key"] in {r["code"] + ":" + r["year"] + "-" + r["month"].zfill(2) for r in fetched}
+
+    def test_sync_rerun_selects_the_other_slice_next(self, workdir, monkeypatch):
+        monkeypatch.setenv("SAM_API_KEY", "x")
+        monkeypatch.setattr("govscout.__main__.SamGovSource", self._FakeSamGovSource)
+        config = {
+            "tracked_codes": ["5340"],
+            "lookback_months": 2,
+            "ledger_path": "coverage_ledger.csv",
+            "default_slices_per_run": 1,
+            "max_pages": 1,
+        }
+        (workdir / "config.json").write_text(json.dumps(config), encoding="utf-8")
+
+        main(["sync", "--json", str(workdir / "dashboard.json")])
+        first_fetched = {r["code"] + r["year"] + r["month"] for r in csv.DictReader((workdir / "coverage_ledger.csv").open(encoding="utf-8")) if r["last_fetched"]}
+
+        main(["sync", "--json", str(workdir / "dashboard.json")])
+        second_fetched = {r["code"] + r["year"] + r["month"] for r in csv.DictReader((workdir / "coverage_ledger.csv").open(encoding="utf-8")) if r["last_fetched"]}
+
+        # Second run advances the OTHER slice, not the same one again —
+        # proves nulls-first selection is really driving successive runs.
+        assert second_fetched != first_fetched
+        assert len(second_fetched) == 2  # both slices now fetched across the two runs
 
 
 class TestAccumulateWiring:
