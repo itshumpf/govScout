@@ -3,11 +3,13 @@ interface Props {
   value: number | string;
   label: string;
   variant?: "accent" | "tier-high" | "tier-medium" | "tier-low";
+  hint?: string;
 }
-const { value, label, variant } = Astro.props;
+const { value, label, variant, hint } = Astro.props;
 ---
 
 <div class:list={["stat-card", variant]}>
   <span class="value">{value}</span>
   <span class="label">{label}</span>
+  {hint && <span class="hint">{hint}</span>}
 </div>

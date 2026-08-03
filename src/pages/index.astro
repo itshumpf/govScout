@@ -7,6 +7,11 @@ import dashboard from "../data/dashboard.json";
 const { generated_at, source, stats } = dashboard;
 const sols = dashboard.solicitations as Sol[];
 
+// description_enriched is new — older dashboard.json snapshots (from before
+// SAM.gov description dereferencing existed) won't have it. Default to 0
+// rather than showing "undefined" until the next pipeline run repopulates it.
+const descriptionEnriched = stats.description_enriched ?? 0;
+
 const tierOf = (score: number): "high" | "medium" | "low" =>
   score >= 70 ? "high" : score >= 40 ? "medium" : "low";
 
@@ -64,11 +69,21 @@ const generatedLabel = generatedDate.toLocaleString("en-US", {
 
     <main class="wrap">
       <section class="stats" aria-label="Pipeline summary">
-        <StatCard value={stats.fetched} label="Fetched" />
+        <StatCard value={stats.stored} label="Solicitations Tracked" />
+        <StatCard
+          value={`${descriptionEnriched} / ${stats.stored}`}
+          label="Full Descriptions"
+          hint="rest show title-only until enriched — see Fetched"
+        />
         <StatCard value={stats.with_pricing_signals} label="Pricing signals" variant="accent" />
         <StatCard value={stats.high} label="High" variant="tier-high" />
         <StatCard value={stats.medium} label="Medium" variant="tier-medium" />
         <StatCard value={stats.low} label="Low" variant="tier-low" />
+        <StatCard
+          value={stats.fetched}
+          label="Fetched This Run"
+          hint="raw API results this run — capped per page budget, not the board total"
+        />
       </section>
 
       {stats.by_weekday && stats.by_fsc && (

@@ -6,9 +6,12 @@ Requires a free api.data.gov key (SAM_API_KEY env var or --api-key).
 
 from __future__ import annotations
 
+import html
+import re
 import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
 import requests
 
@@ -17,6 +20,18 @@ from ..models import Solicitation
 from .base import Source, enrich_solicitation
 
 BASE_URL = "https://api.sam.gov/opportunities/v2/search"
+
+# The search response's "description" field is not the narrative text — it's
+# a link to it (confirmed against a live response, 2026-08-03: every field
+# is a fixed-length noticedesc URL, e.g.
+# "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=<id>").
+# fetch_description() dereferences one; notice_id_from_description() picks
+# the id back out of the link so callers can tell "needs enrichment" apart
+# from "already real text" (sample data, or an earlier enrichment pass).
+DESC_URL = "https://api.sam.gov/prod/opportunities/v1/noticedesc"
+_NOTICEDESC_MARKER = "/opportunities/v1/noticedesc"
+_TAG_RE = re.compile(r"<[^>]+>")
+
 _PAGE_LIMIT = 100  # API max per page
 _TIMEOUT = 30
 _PAGE_DELAY = 0.5  # seconds between page requests (politeness)
@@ -47,6 +62,25 @@ API_KEY_HELP = (
     "Get a free key at https://api.data.gov/signup/ (or in your SAM.gov account\n"
     "under Workspace > API Key), then pass --api-key KEY or set SAM_API_KEY."
 )
+
+
+def notice_id_from_description(description: str) -> str | None:
+    """Pull the noticeid back out of a noticedesc link, or None if ``description``
+    isn't one (already-dereferenced text, sample data, empty string, ...)."""
+    if _NOTICEDESC_MARKER not in (description or ""):
+        return None
+    ids = parse_qs(urlparse(description).query).get("noticeid")
+    return ids[0] if ids else None
+
+
+def _strip_html(raw_html: str) -> str:
+    """Collapse noticedesc's HTML-wrapped text to plain whitespace-normalized text.
+
+    Good enough for the scorer/extractors (which only care about words and
+    punctuation, not markup) without pulling in an HTML-parsing dependency.
+    """
+    text = html.unescape(_TAG_RE.sub(" ", raw_html or ""))
+    return " ".join(text.split())
 
 
 class SamGovError(RuntimeError):
@@ -145,7 +179,7 @@ class SamGovSource(Source):
         raw: list[dict] = []
         page = 0
         while page < self.max_pages:
-            payload = self._get(params)
+            payload = self._get(BASE_URL, params)
             opportunities = payload.get("opportunitiesData") or []
             raw.extend(self._map_raw(opp) for opp in opportunities)
             page += 1
@@ -158,8 +192,20 @@ class SamGovSource(Source):
             ratelimit.clear(self.state_path)
         return raw
 
-    def _get(self, params: dict[str, str | int]) -> dict:
-        """GET one page with retry/backoff on transient 5xx responses.
+    # --------------------------------------------------------- description
+
+    def fetch_description(self, notice_id: str) -> str:
+        """Dereference one notice's noticedesc link into plain narrative text.
+
+        A single request against the same daily quota as search (see the
+        module-level DESC_URL note) — callers are responsible for budgeting
+        how many of these they can afford; see describe.py.
+        """
+        payload = self._get(DESC_URL, {"api_key": self.api_key, "noticeid": notice_id})
+        return _strip_html(payload.get("description") or "")
+
+    def _get(self, url: str, params: dict[str, str | int]) -> dict:
+        """GET one request with retry/backoff on transient 5xx responses.
 
         HTTP 429 raises immediately (see RATE_LIMIT_MSG) to protect the
         caller's small daily request quota.
@@ -167,7 +213,7 @@ class SamGovSource(Source):
         delay = 1.0
         for attempt in range(1, _MAX_RETRIES + 1):
             try:
-                resp = self.session.get(BASE_URL, params=params, timeout=_TIMEOUT)
+                resp = self.session.get(url, params=params, timeout=_TIMEOUT)
             except requests.RequestException as exc:
                 if attempt == _MAX_RETRIES:
                     raise SamGovError(f"SAM.gov request failed: {exc}") from exc
@@ -221,7 +267,10 @@ class SamGovSource(Source):
             "response_deadline": (opp.get("responseDeadLine") or "")[:10] or None,
             "description": opp.get("description") or "",
             "url": target_url,
-            "attachments": [a.get("name", "") for a in (opp.get("attachments") or []) if isinstance(a, dict)],
+            # v2 search responses carry attachment links under "resourceLinks"
+            # (array of opaque download URLs) — there is no "attachments"
+            # field at all (confirmed against a live response 2026-08-03).
+            "attachments": [link for link in (opp.get("resourceLinks") or []) if isinstance(link, str)],
         }
 
     def normalize(self, raw: dict) -> Solicitation:

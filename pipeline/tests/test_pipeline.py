@@ -95,6 +95,7 @@ class TestJsonExport:
             "fetched",
             "stored",
             "with_pricing_signals",
+            "description_enriched",
             "high",
             "medium",
             "low",
@@ -219,6 +220,68 @@ class TestOtherCommands:
         assert main(["fetch"]) == 1
         assert calls == []  # blocked before any request was made
         assert "cooling down" in capsys.readouterr().err
+
+    def test_fetch_enriches_descriptions_within_budget_and_stores_real_text(self, workdir, capsys, monkeypatch):
+        """cmd_fetch wires describe_budget through _run_pipeline: SAM.gov's raw
+        noticedesc links get dereferenced (up to budget) before scoring, and
+        the enriched text — not the link — ends up in the store/JSON."""
+        from govscout.sources.base import Source, enrich_solicitation
+
+        link = "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid={}"
+
+        class FakeSamGovSource(Source):
+            name = "sam.gov"
+
+            def __init__(self, api_key, session=None, max_pages=1, state_path=None):
+                pass
+
+            def fetch(self, psc_codes, days_back):
+                return [
+                    {
+                        "sol_number": "SOL-1",
+                        "title": "Bracket RFQ",
+                        "agency": "DLA Aviation",
+                        "psc_code": "5340",
+                        "posted_date": "2026-08-01",
+                        "response_deadline": None,
+                        "description": link.format("n1"),
+                        "url": None,
+                        "attachments": [],
+                    },
+                    {
+                        "sol_number": "SOL-2",
+                        "title": "Valve RFQ",
+                        "agency": "DLA Aviation",
+                        "psc_code": "5340",
+                        "posted_date": "2026-07-01",  # older — lower priority
+                        "response_deadline": None,
+                        "description": link.format("n2"),
+                        "url": None,
+                        "attachments": [],
+                    },
+                ]
+
+            def fetch_description(self, notice_id):
+                return f"Request for quotation, NSN 5340-01-234-5678, quote due for {notice_id}."
+
+            def normalize(self, raw):
+                return enrich_solicitation(raw)
+
+        monkeypatch.setenv("SAM_API_KEY", "x")
+        monkeypatch.setattr("govscout.__main__.SamGovSource", FakeSamGovSource)
+        (workdir / "config.json").write_text(json.dumps({"describe_budget": 1}), encoding="utf-8")
+
+        assert main(["fetch"]) == 0
+        out = capsys.readouterr().out
+        assert "Descriptions: 2 needed enrichment, 0 from cache, 1 fetched live" in out
+
+        with Store(workdir / "govscout.db") as store:
+            sols = {s.sol_number: s for s in store.all()}
+        # Newest posted_date is prioritized within the budget of 1.
+        assert sols["SOL-1"].description_enriched is True
+        assert "quote due for n1" in sols["SOL-1"].description
+        assert sols["SOL-2"].description_enriched is False
+        assert sols["SOL-2"].description == link.format("n2")
 
 
 class TestSyncCommand:

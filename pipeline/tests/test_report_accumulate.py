@@ -189,6 +189,56 @@ class TestExportJsonAccumulated:
         assert [s["sol_number"] for s in data["solicitations"]] == ["HIGH-1", "LOW-1"]
 
 
+class TestDescriptionEnrichedStat:
+    """stats.description_enriched — see describe.py; the board-visible signal
+    that some records may still hold a SAM.gov link instead of real text."""
+
+    def test_counts_only_records_with_real_text(self, tmp_path):
+        path = tmp_path / "dashboard.json"
+        enriched = _sol("REAL-1", fetched_at="2026-07-26T00:00:00+00:00", response_deadline="2026-08-01")
+        enriched.description = "Real narrative text, RFQ due 8/1"
+        enriched.description_enriched = True
+
+        not_yet = _sol("LINK-1", fetched_at="2026-07-26T00:00:00+00:00", response_deadline="2026-08-01")
+        not_yet.description = "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=x"
+        not_yet.description_enriched = False
+
+        export_json_accumulated([enriched, not_yet], path, source="sam.gov", today=_TODAY)
+        data = json.loads(path.read_text(encoding="utf-8"))
+        assert data["stats"]["stored"] == 2
+        assert data["stats"]["description_enriched"] == 1
+
+    def test_export_json_by_slice_counts_correctly_too(self, tmp_path):
+        path = tmp_path / "dashboard.json"
+        enriched = _sol("REAL-1", fetched_at="2026-01-05T00:00:00+00:00", response_deadline="2026-08-01")
+        enriched.description_enriched = True
+        sols = {"5340:2026-01": [enriched]}
+        export_json_by_slice(sols, path, source="sam.gov", today=_TODAY)
+        data = json.loads(path.read_text(encoding="utf-8"))
+        assert data["stats"]["description_enriched"] == 1
+
+    def test_pre_migration_rows_without_the_field_count_as_not_enriched(self, tmp_path):
+        """A dashboard.json written before description_enriched existed has no
+        such key on its rows at all — must not error, must count as 0."""
+        path = tmp_path / "dashboard.json"
+        path.write_text(
+            json.dumps(
+                {
+                    "generated_at": "2026-01-01T00:00:00+00:00",
+                    "source": "sam.gov",
+                    "stats": {},
+                    "solicitations": [_row(sol_number="LEGACY-1", response_deadline="2026-08-01")],
+                }
+            ),
+            encoding="utf-8",
+        )
+        new = [_sol("SOL-1", fetched_at="2026-07-26T00:00:00+00:00", response_deadline="2026-08-01")]
+        export_json_accumulated(new, path, source="sam.gov", today=_TODAY)
+        data = json.loads(path.read_text(encoding="utf-8"))
+        assert data["stats"]["stored"] == 2
+        assert data["stats"]["description_enriched"] == 0
+
+
 class TestExportJsonBySlice:
     """Idempotent replace-by-slice — the coverage ledger's export path."""
 

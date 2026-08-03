@@ -3,7 +3,9 @@
   "days_back": 30,
   "db_path": "govscout.db",
   "output_dir": "out",
-  "max_pages": 3,
+  "max_pages": 1,
+  "describe_budget": 6,
+  "sync_describe_budget": 2,
   "tracked_codes": [
     "5305", "5306", "5307", "5310", "5315", "5320", "5325", "5340",
     "5905", "5910", "5920", "5925", "5930", "5935", "5945", "5961", "5962", "5998",

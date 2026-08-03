@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS solicitations (
     pricing_score    INTEGER,
     pricing_flags    TEXT,
     description      TEXT,
+    description_enriched INTEGER,
     fetched_at       TEXT,
     first_seen       TEXT NOT NULL
 );
@@ -81,6 +82,18 @@ class Store:
     def count(self) -> int:
         """Total number of stored solicitations."""
         return self._conn.execute("SELECT COUNT(*) FROM solicitations").fetchone()[0]
+
+    def get_description(self, sol_number: str) -> str | None:
+        """Previously-stored description for ``sol_number``, or None if unseen.
+
+        Used to cache description enrichment across runs (see describe.py):
+        a notice already holding real narrative text from an earlier fetch
+        is never dereferenced again.
+        """
+        row = self._conn.execute(
+            "SELECT description FROM solicitations WHERE sol_number = ?", (sol_number,)
+        ).fetchone()
+        return row["description"] if row else None
 
     def all(self) -> list[Solicitation]:
         """All solicitations, best pricing signals first."""

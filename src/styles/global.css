@@ -139,6 +139,13 @@ a:hover { text-decoration: underline; }
   color: var(--text-muted);
 }
 
+.stat-card .hint {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.68rem;
+  color: var(--text-faint);
+}
+
 .stat-card.accent { border-color: rgba(245, 166, 35, 0.35); }
 .stat-card.accent .value { color: var(--accent); }
 .stat-card.tier-high .value { color: var(--high); }

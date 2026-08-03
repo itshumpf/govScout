@@ -7,16 +7,31 @@ name: Refresh dashboard data
 # role, confirmed capped at 10 requests/day (not an estimate — Braeden
 # checked, 2026-08-02; expected to rise once his EIN/entity-role
 # verification comes through). pipeline/config.json defines a weekly
-# psc_rotation (Mon-Sun PSC/FSC groups) and pins max_pages to 3, so a normal
-# run queries only today's group and spends ~3 requests — comfortably
-# inside the daily budget with headroom for manual re-runs.
+# psc_rotation (Mon-Sun PSC/FSC groups) and pins max_pages to 1, so a normal
+# run's search step spends exactly 1 of the 10 requests on today's group.
+#
+# Search alone was the whole story until 2026-08-03: SAM.gov's search
+# response returns "description" as a link to the narrative, not the text
+# itself (see govscout/describe.py), so every record scored on title text
+# only — 460 of 464 stored solicitations scored exactly 0. The remaining
+# budget (describe_budget: 6 in config.json) is spent dereferencing that
+# link into real text for as many freshly-fetched records as it can afford,
+# prioritizing the newest/most time-sensitive first, before search
+# pagination would have (300 titles with no usable text beats nobody, but 1
+# page + a handful of fully-enriched records is worth more for a tool whose
+# whole job is scoring pricing signal from that text). That's ~7 of the
+# 10 requests spent per run, leaving headroom for manual re-runs and the
+# occasional `sync` dispatch below. Coverage builds up gradually: a
+# solicitation not enriched today is a cache hit (no new request) once its
+# turn comes on a later run — see describe.py's module docstring.
 # Results accumulate into dashboard.json across the week (see
 # export_json_accumulated in report.py) instead of replacing it, so the
 # board fills up over Mon-Sun as each group gets its turn; stale/expired
 # solicitations are dropped automatically. See "Free-tier PSC rotation" in
 # README.md. If you add an entity role to the key (raises the quota to
 # ~1000/day), you can drop psc_rotation and query psc_codes directly every
-# day — raise max_pages in pipeline/config.json accordingly.
+# day — raise max_pages and describe_budget in pipeline/config.json
+# accordingly.
 #
 # Scheduling gotcha: GitHub disables scheduled workflows after 60 days of
 # repository inactivity (no pushes/commits). If daily runs silently stop,

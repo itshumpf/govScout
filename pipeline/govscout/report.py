@@ -58,6 +58,14 @@ def _compute_trend_stats(rows: list[dict]) -> dict:
     return {"by_weekday": by_weekday, "by_fsc": by_fsc}
 
 
+def _description_enriched_count(rows: list[dict]) -> int:
+    """How many rows hold real narrative text rather than a SAM.gov noticedesc
+    link — surfaced as its own stat so partial description coverage (see
+    describe.py's request budget) is visible on the dashboard instead of
+    silently assumed complete."""
+    return sum(1 for row in rows if row.get("description_enriched"))
+
+
 def export_csv(sols: list[Solicitation], path: str | Path) -> Path:
     """Write solicitations to CSV.
 
@@ -113,6 +121,7 @@ def export_json(
             "fetched": len(sols),
             "stored": stored,
             "with_pricing_signals": sum(1 for s in sols if s.pricing_flags),
+            "description_enriched": _description_enriched_count(sol_rows),
             **tiers,
             **trends,
         },
@@ -233,6 +242,7 @@ def export_json_by_slice(
             "fetched": fetched_count,
             "stored": len(cleaned),
             "with_pricing_signals": sum(1 for row in cleaned if row.get("pricing_flags")),
+            "description_enriched": _description_enriched_count(cleaned),
             **tiers,
             **trends,
         },
@@ -291,6 +301,7 @@ def export_json_accumulated(
             "fetched": len(new_sols),
             "stored": len(cleaned),
             "with_pricing_signals": sum(1 for row in cleaned if row.get("pricing_flags")),
+            "description_enriched": _description_enriched_count(cleaned),
             **tiers,
             **trends,
         },

@@ -16,7 +16,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import __version__
+from . import __version__, describe
 from .config import Config, load_config, save_config
 from .coverage import CoverageLedger, QuotaExceeded, Slice, build_universe, run_backfill
 from .report import export_csv, export_json, export_json_accumulated, export_json_by_slice, render_digest
@@ -24,6 +24,31 @@ from .sources.base import Source
 from .sources.samgov import API_KEY_HELP, SamGovError, SamGovRateLimitError, SamGovSource
 from .sources.sample import SampleSource
 from .store import Store
+
+
+def _store_description_cache(store: Store):
+    """Build a ``cached_description`` lookup (see describe.enrich_descriptions)
+    backed by the local store — a notice already holding real text from an
+    earlier run is never dereferenced again."""
+
+    def lookup(raw: dict) -> str | None:
+        existing = store.get_description(raw.get("sol_number") or "")
+        return existing if existing and describe.is_dereferenced(existing) else None
+
+    return lookup
+
+
+def _describe_summary(result: describe.DescribeResult) -> str:
+    """One-line report of an enrichment pass — see describe.DescribeResult."""
+    msg = (
+        f"Descriptions: {result.candidates} needed enrichment, "
+        f"{result.cached} from cache, {result.fetched} fetched live"
+    )
+    if result.failed:
+        msg += f", {result.failed} failed"
+    if result.quota_exhausted:
+        msg += " — stopped early: SAM.gov quota reached"
+    return msg
 
 
 def _run_pipeline(
@@ -43,10 +68,20 @@ def _run_pipeline(
     a snapshot of just this run) — see the "fetch" vs "demo" callers.
     """
     raw = source.fetch(psc_codes, config.days_back)
-    sols = [source.normalize(record) for record in raw]
-    unique = {sol.sol_number for sol in sols}
 
     with Store(config.db_path) as store:
+        if hasattr(source, "fetch_description") and config.describe_budget > 0:
+            raw = describe.prioritize(raw)
+            result = describe.enrich_descriptions(
+                raw,
+                fetch_description=source.fetch_description,
+                cached_description=_store_description_cache(store),
+                budget=config.describe_budget,
+            )
+            print(_describe_summary(result))
+
+        sols = [source.normalize(record) for record in raw]
+        unique = {sol.sol_number for sol in sols}
         new, updated = store.upsert_many(sols)
         total = store.count()
 
@@ -159,12 +194,41 @@ def cmd_sync(args: argparse.Namespace) -> int:
 
     source = SamGovSource(api_key, max_pages=config.sync_max_pages, state_path=config.rate_limit_state_path)
 
+    # Session-only cache: sync has no local Store to persist across runs
+    # (unlike `fetch`, which caches via _store_description_cache), but a
+    # notice id repeated across slices within this one run still shouldn't
+    # be dereferenced twice. describe_budget_remaining is shared across
+    # slices (not reset per-slice) so the run-level budget is respected.
+    describe_budget_remaining = config.sync_describe_budget
+    session_cache: dict[str, str] = {}
+
+    def cached_description(raw: dict) -> str | None:
+        existing = session_cache.get(raw.get("sol_number") or "")
+        return existing if existing and describe.is_dereferenced(existing) else None
+
     def fetch_slice(slc: Slice) -> list[dict]:
+        nonlocal describe_budget_remaining
         posted_from, posted_to = slc.posted_range(today)
         try:
-            return source.fetch_range([slc.code], posted_from, posted_to)
+            raw = source.fetch_range([slc.code], posted_from, posted_to)
         except SamGovRateLimitError as exc:
             raise QuotaExceeded(str(exc)) from exc
+
+        if describe_budget_remaining > 0 and hasattr(source, "fetch_description"):
+            raw = describe.prioritize(raw)
+            result = describe.enrich_descriptions(
+                raw,
+                fetch_description=source.fetch_description,
+                cached_description=cached_description,
+                budget=describe_budget_remaining,
+            )
+            describe_budget_remaining -= result.fetched
+            for record in raw:
+                if record.get("sol_number") and describe.is_dereferenced(record.get("description") or ""):
+                    session_cache[record["sol_number"]] = record["description"]
+            print(f"  {slc.key}: {_describe_summary(result)}")
+
+        return raw
 
     result, sols_by_slice = run_backfill(ledger, universe, n, fetch_slice, source.normalize)
     ledger.save(ledger_path)

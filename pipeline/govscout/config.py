@@ -104,6 +104,18 @@ class Config:
         fresh checkout otherwise has no memory of a previous run's 429 and
         will burn another request just to rediscover it. Shared by both
         `fetch` and `sync`, since they draw from the same daily quota.
+    describe_budget: live noticedesc requests `fetch` may spend per run
+        dereferencing SAM.gov's description link into real narrative text
+        (see describe.py) — each one is a full request against the same
+        10/day cap as search, on top of max_pages. 0 disables enrichment.
+        Default kept small (3) so a config-less first run can't overspend;
+        this project's own config.json raises it — see that file's comment
+        for the breadth-vs-depth reasoning (search returns titles with no
+        usable text for scoring; without real text almost every record
+        scores 0, so depth is worth more than another page of titles).
+    sync_describe_budget: same, for `sync` — kept separate since `fetch`
+        and `sync` are invoked independently (see default_slices_per_run)
+        and neither knows how much of the day's quota the other has spent.
     """
 
     psc_codes: list[str] = field(default_factory=list)
@@ -118,6 +130,8 @@ class Config:
     sync_max_pages: int = 1
     default_slices_per_run: int = 5
     rate_limit_state_path: str = "rate_limit_state.json"
+    describe_budget: int = 3
+    sync_describe_budget: int = 2
 
     def todays_psc_codes(self, today: date | None = None) -> list[str]:
         """PSC/FSC codes to query for ``today`` (UTC by default).

@@ -12,8 +12,12 @@ import re
 NSN_RE = re.compile(r"\b\d{4}-\d{2}-\d{3}-\d{4}\b")
 
 # Part numbers appear after labels like "P/N", "PN", "part number", "part no".
+# The leading \b stops the label from matching mid-word, and the trailing
+# negative lookahead stops it from matching as a *prefix* of a longer word —
+# without it, bare "PN" matches inside "PNEUMATIC" (leading \b alone isn't
+# enough: PNEUMATIC starts at a word boundary too).
 PART_RE = re.compile(
-    r"(?:P/N|PN|part\s*number|part\s*no\.?)\s*[:#.]?\s*([A-Z0-9][A-Z0-9\-/.]{1,19})",
+    r"\b(?:P/N|PN|part\s*number|part\s*no\.?)(?![A-Za-z])\s*[:#.]?\s*([A-Z0-9][A-Z0-9\-/.]{1,19})",
     re.IGNORECASE,
 )
 

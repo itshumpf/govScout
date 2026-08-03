@@ -9,6 +9,15 @@ from ..detect import score_pricing
 from ..extract import extract_nsns, extract_part_numbers, extract_quantities
 from ..models import Solicitation
 
+# SAM.gov's v2 search response returns "description" as a link to the
+# narrative rather than the text itself (see sources/samgov.py's
+# notice_id_from_description/fetch_description/describe.py). Duplicated
+# here as a plain string rather than imported to avoid a base.py <->
+# samgov.py import cycle (samgov.py already imports from base.py) — this
+# marker is a stable detail of SAM.gov's API, not something expected to
+# change independently of samgov.py's own copy.
+_NOTICEDESC_MARKER = "/opportunities/v1/noticedesc"
+
 
 class Source(ABC):
     """Abstract opportunity source.
@@ -62,4 +71,5 @@ def enrich_solicitation(raw: dict) -> Solicitation:
         pricing_score=score,
         pricing_flags=flags,
         fetched_at=datetime.now(timezone.utc).isoformat(timespec="microseconds"),
+        description_enriched=bool(description) and _NOTICEDESC_MARKER not in description,
     )

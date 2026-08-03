@@ -20,6 +20,7 @@ ROW_FIELDS: tuple[str, ...] = (
     "pricing_score",
     "pricing_flags",
     "description",
+    "description_enriched",
     "fetched_at",
 )
 
@@ -49,6 +50,10 @@ class Solicitation:
     pricing_score: int  # 0-100, from detect.py
     pricing_flags: list[str]  # e.g. ["online_pricing", "historical_pricing", "quote_requested"]
     fetched_at: str  # ISO timestamp
+    description_enriched: bool = False  # True when `description` holds real narrative
+    # text rather than a SAM.gov noticedesc link — see sources/base.py and
+    # describe.py. Computed from the description content itself, so it's
+    # correct regardless of source (sample data is always real text).
 
     def to_row(self) -> dict:
         """Flatten to a CSV/DB-friendly dict.
@@ -70,6 +75,7 @@ class Solicitation:
             "pricing_score": self.pricing_score,
             "pricing_flags": "; ".join(self.pricing_flags),
             "description": self.description,
+            "description_enriched": self.description_enriched,
             "fetched_at": self.fetched_at,
         }
 
@@ -81,6 +87,12 @@ class Solicitation:
             if not value:
                 return []
             return [part.strip() for part in str(value).split(";") if part.strip()]
+
+        def parse_bool(value: object) -> bool:
+            """Handle sqlite (0/1 int), JSON (bool), and CSV (stringified) round-trips."""
+            if isinstance(value, str):
+                return value.strip().lower() in ("1", "true")
+            return bool(value)
 
         return cls(
             sol_number=row["sol_number"],
@@ -98,4 +110,5 @@ class Solicitation:
             pricing_score=int(row.get("pricing_score") or 0),
             pricing_flags=split_list(row.get("pricing_flags")),
             fetched_at=row["fetched_at"],
+            description_enriched=parse_bool(row.get("description_enriched")),
         )

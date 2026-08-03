@@ -44,6 +44,11 @@ class TestExtractPartNumbers:
     def test_no_part_numbers(self):
         assert extract_part_numbers("services only, no hardware") == []
 
+    def test_pn_prefix_false_positive(self):
+        """"PNEUMATIC" starts with "PN" but isn't the P/N label — must not match."""
+        assert extract_part_numbers("PNEUMATIC cylinder assembly, qty 5") == []
+        assert extract_part_numbers("replace PNEUMATIC line before PN 4F11001-101A") == ["4F11001-101A"]
+
 
 class TestExtractQuantities:
     def test_qty_label(self):
