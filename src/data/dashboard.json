@@ -1,33 +1,33 @@
 {
-  "generated_at": "2026-09-19T16:07:42+00:00",
+  "generated_at": "2026-09-20T16:34:39+00:00",
   "source": "sam.gov",
   "stats": {
     "fetched": 100,
-    "stored": 1805,
+    "stored": 1804,
     "with_pricing_signals": 13,
-    "description_enriched": 13,
+    "description_enriched": 12,
     "high": 0,
     "medium": 0,
-    "low": 1805,
+    "low": 1804,
     "by_weekday": {
       "Mon": 229,
       "Tue": 262,
-      "Wed": 314,
-      "Thu": 332,
-      "Fri": 430,
-      "Sat": 132,
-      "Sun": 106
+      "Wed": 286,
+      "Thu": 331,
+      "Fri": 427,
+      "Sat": 159,
+      "Sun": 110
     },
     "by_fsc": [
       {
         "code": "59",
         "name": "",
-        "count": 142
+        "count": 136
       },
       {
         "code": "53",
         "name": "",
-        "count": 78
+        "count": 76
       },
       {
         "code": "1680",
@@ -37,22 +37,22 @@
       {
         "code": "48",
         "name": "",
-        "count": 57
+        "count": 53
       },
       {
         "code": "61",
         "name": "",
-        "count": 53
-      },
-      {
-        "code": "43",
-        "name": "",
-        "count": 36
+        "count": 51
       },
       {
         "code": "25",
         "name": "",
-        "count": 36
+        "count": 35
+      },
+      {
+        "code": "43",
+        "name": "",
+        "count": 34
       },
       {
         "code": "16",
@@ -263,14 +263,14 @@
       "fetched_at": "2026-09-18T16:46:01.090342+00:00"
     },
     {
-      "sol_number": "W911PT26QA165",
-      "title": "ForceMate Bushings per Drawing for Watervliet Arsenal, NY",
-      "agency": "W6QK ACC WVA",
-      "psc_code": "5342",
-      "posted_date": "2026-09-19",
-      "response_deadline": "2026-09-23",
-      "url": "https://sam.gov/workspace/contract/opp/fc69a16af5e94a8abc8a8bcde0d3e366/view",
-      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/448a20d1b6924ef5b6c0f87f8fc0128c/download",
+      "sol_number": "6923TrackUSMMA",
+      "title": "RFQ6923G226Q000036 Track resurfacing USMMA",
+      "agency": "693JF7 DOT  MARITIME ADMINISTRATION",
+      "psc_code": "Z2PZ",
+      "posted_date": "2026-09-20",
+      "response_deadline": "2026-09-25",
+      "url": "https://sam.gov/workspace/contract/opp/b4c9db69a92e42d3b8bb6dff4fc7ea43/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/56a2c40f57834dd1a0f190cc0d34ecba/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/7defea86dd6342938a8db06b4905953b/download",
       "nsns": "",
       "part_numbers": "",
       "quantities": "",
@@ -278,9 +278,9 @@
       "pricing_flags": [
         "quote_requested"
       ],
-      "description": "This combined synopsis/solicitation for commercial items prepared in accordance with the format at RFO 12.202, as supplemented with additional information included in this notice. This announcement constitutes the only solicitation; quotes are being requested and a written solicitation will not be issued. The solicitation number W911PT26Q156 is being issued as a request for quotation (RFQ). In order to be eligible for award, the successful offeror's System for Award Management (SAM) Registration must be active and include representations and certifications. The associated North American Industry Classification System (NAICS) code is 332510 \u2013 Hardware Manufacturing , which has a small business standard size of 750 employees. This requirement is Unrestricted. The U.S. Army Tank-Automotive and Armaments Command (TACOM), Watervliet Arsenal requires ForceMate Bushings per Drawing # 11583060, Rev B for 155mm M284 Cannon; and ForceMate Bushings per Drawing # 11583052, Rev B for 155mm M284 Cannon. Required Supplies : This solicitation is for the procurement of 1136 Each ForceMate Bushings per Drawing # 11583060, Rev B for 155mm M284 Cannon; and 222 Each ForceMate Bushings per Drawing # 11583052, Rev B for 155mm M284 Cannon Varinelli Broaches and Rifling Bushing to include cost for delivery for Watervliet Arsenal in Watervliet, NY. The Government intends to award one (1) Firm Fixed Price type purchase order based on the evaluation criteria below. IMPORTANT! OFFERS WILL ONLY BE ACCEPTED USING THE FOLLOWING METHODS: (a) Email to: evan.j.caulfield.civ@army.mil (b) Request for Quotes must be filled out completely and sent in their entirety to be considered responsive. Instructions to Offerors: Instructions for completing and submitting an offer are as follows: Offerors are required to: 1. Sign the coverpage and complete all fill-ins in the solicitation document; and 2. Write the proposed price on Contract Line Item Number (CLIN) 0001-0003 (including delivery); and Failure to submit a full offer as outlined may result in the offeror being rejected if not within the required time and date listed. Since discussions are not anticipated for this solicitation, Offerors are cautioned to consult with the PCO before submitting an offer that takes exception to any term or condition of this solicitation. REQUEST FOR QUOTE RESPONSES ALL RESPONSES MUST BE ELECTRONIC. YOU MUST SUBMIT YOUR QUOTE RESPONSES USING THE FOLLOWING METHODS: (a) Email to: evan.j.caulfield.civ@army.mil (b) Request for Quotes must be filled out completely and sent in its entirety to be considered responsive. *** EVALUATION--COMMERCIAL ITEMS (a) We will award a contract to the offeror that: 1. submits the lowest evaluated bid or offer, and 2. submits a bid or proposal that meets all the material requirements of this solicitation, and 3. meets all the responsibility criteria at FAR 9.104 (b) To make sure that you meet the responsibility criteria at FAR 9.104 we may: 1. arrange a visit to your plant and perform a preaward survey; 2. ask you to provide financial, technical, production, or managerial background information. (c) Options. We will evaluate offers for award purposes by adding the total price for all options to the total price for the basic requirement. We may determine that an offer is unacceptable if the option prices are significantly unbalanced. Evaluation of options shall not obligate us to exercise the option(s). (d) A written notice of award or acceptance of an offer, mailed or otherwise furnished to the successful offeror within the time for acceptance specified in the offer, shall result in a binding contract without further action by either party. Before the offer's specified expiration time, we may accept an offer (or part of an offer), regardless of whether there are negotiations after its receipt, unless a written notice of withdrawal is received before award. The resultant purchase order will be a firm fixed price, and award will be made to the lowest priced eligible offer. Please reference the attached RFQ W911PT26QA156 for instructions and applicable provisions and clauses. FOB Destination : Watervliet Arsenal, NY. Delivery: 60 Days After Date of Contract, or Better Payment Terms : Net 30 Please provide responses to this notice, no later than Wednesday, 23 September 2026, 4:00 PM, Eastern Time to: evan.j.caulfield@army.mil Telephone responses will not be accepted. *Note: In order to be eligible for award of a Government contract, vendors must be actively registered in the System for Award Management (SAM), have no active exclusions, and complete representations and certifications. For more information, review the SAM website at https://www.sam.gov. One or more of the items under this acquisition is subject to the World Trade Organization Government Procurement Agreement and Free Trade Agreements. Instructions will be available in the solicitation on how to access the associated technical data package. To receive the drawings, your company must have an active JCP record at time of request. The solicitation document contains information that has been designated as \u201cMilitarily Critical Technical Data.\u201d Only businesses that have been certified by the Department of Defense, United States/Canada Joint Certification Office, have an active DD2345 and have a valid requirement may have a copy of the solicitation document and technical data. To obtain certification, contact Defense Logistics Agency (DLA) JCP Team at (877) 352-2255 or https://www.dla.mil/Logistics-Operations/Services/JCP/ . Requests for technical data from foreign sources or representatives (other than Canada) will not be considered.",
+      "description": "Department of Transportation has a need for Track resurfacing at Tombstone, United States Merchant Marine Academy (USMMA), 300 Steamboat Road, Kings Point, NY 11024. Due to time constraints, RFQ closing date is September 25, 2026, 1PM EDT. Questions are due by September 21, 2026. Please limit 2-3 questions. It is a 100% Small business set aside, under NAics 238990. Email your quotes before the close of the RFQ on September 25, 2026, 1pm EDT to durba.ray@dot.gov; NarineA@usmma.edu. See the attachments. Attachment filled pricing sheet both tabs must be submiited with the Quote.",
       "description_enriched": true,
-      "fetched_at": "2026-09-19T16:07:42.644284+00:00"
+      "fetched_at": "2026-09-20T16:34:39.209389+00:00"
     },
     {
       "sol_number": "FA800326P0008",
@@ -323,6 +323,24 @@
       "fetched_at": "2026-08-26T13:43:32.206025+00:00"
     },
     {
+      "sol_number": "W911PT26QA165",
+      "title": "ForceMate Bushings per Drawing for Watervliet Arsenal, NY",
+      "agency": "W6QK ACC WVA",
+      "psc_code": "5342",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-23",
+      "url": "https://sam.gov/workspace/contract/opp/fc69a16af5e94a8abc8a8bcde0d3e366/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/448a20d1b6924ef5b6c0f87f8fc0128c/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fc69a16af5e94a8abc8a8bcde0d3e366",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213665+00:00"
+    },
+    {
       "sol_number": "70T05026Q5903N007",
       "title": "Screening Bins for AT X-Ray Machines at MIA",
       "agency": "MISSION ESSENTIALS",
@@ -338,7 +356,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fef5e2c63d04469284d50e3a2e4ec72e",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.646221+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215681+00:00"
     },
     {
       "sol_number": "W911S026QA013",
@@ -356,7 +374,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fbc27e363f7d47af96220cc6a2a99765",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.646305+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215727+00:00"
     },
     {
       "sol_number": "W912CH-26-S-0001",
@@ -658,258 +676,6 @@
       "fetched_at": "2026-08-05T15:05:38.457837+00:00"
     },
     {
-      "sol_number": "SPE7M226Q0511",
-      "title": "17--PISTON,LAUNCHING EN",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "17",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/ff686723a9b9456f807080657aa02e94/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ff686723a9b9456f807080657aa02e94",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.457888+00:00"
-    },
-    {
-      "sol_number": "SPE7L126T374R",
-      "title": "53--COVER,ACCESS",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "53",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/fec983860baa43368ef38a4a007bb994/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fec983860baa43368ef38a4a007bb994",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.457937+00:00"
-    },
-    {
-      "sol_number": "SPE7MX26R0038",
-      "title": "43--PARTS KIT,FLUID PRESSURE FILTER",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "43",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/fdee3c4c0588432c9a7c8a13dbe259b4/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fdee3c4c0588432c9a7c8a13dbe259b4",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.457991+00:00"
-    },
-    {
-      "sol_number": "SPE7M426Q0872",
-      "title": "48--VALVE,SAFETY RELIEF",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "48",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/fd6e204a347b44b9b2b8c7c40c3415b6/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fd6e204a347b44b9b2b8c7c40c3415b6",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458042+00:00"
-    },
-    {
-      "sol_number": "36C24226AP2619",
-      "title": "6515--SPS Preparation and Packing Workstations",
-      "agency": "242-NETWORK CONTRACT OFFICE 02 (36C242)",
-      "psc_code": "6515",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/fc8ef41d3be44749b60d54b22e7fe574/view",
-      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/18e1a317e06141c083e75c33b29f6784/download",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fc8ef41d3be44749b60d54b22e7fe574",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458103+00:00"
-    },
-    {
-      "sol_number": "SPE7L326T8358",
-      "title": "25--DISK,CLUTCH,VEHICUL",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "25",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/fb6bfc2c9e3b4498870d36f37811c28f/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fb6bfc2c9e3b4498870d36f37811c28f",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458154+00:00"
-    },
-    {
-      "sol_number": "SPMYM226Q7712",
-      "title": "DRUM/PAIL",
-      "agency": "DLA MARITIME - PUGET SOUND",
-      "psc_code": "8110",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/fa108f3b416e4e0094dd48547f7c15ee/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fa108f3b416e4e0094dd48547f7c15ee",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458203+00:00"
-    },
-    {
-      "sol_number": "SPE4A626T06UT",
-      "title": "53--SCREW,MACHINE",
-      "agency": "DLA AVIATION",
-      "psc_code": "53",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/f886f48b37d647238647d09c0857c912/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f886f48b37d647238647d09c0857c912",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458253+00:00"
-    },
-    {
-      "sol_number": "SPE4A526T236Y",
-      "title": "30--SHAFT,SHOULDERED",
-      "agency": "DLA AVIATION",
-      "psc_code": "30",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/f7fca04831a34db98dc07bd5f857396f/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f7fca04831a34db98dc07bd5f857396f",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458303+00:00"
-    },
-    {
-      "sol_number": "SPE7M126T9079",
-      "title": "66--CONVERTER,WAVE FORM",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "66",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/f62dcde0025345d6a4f0c40cbe43b5ee/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f62dcde0025345d6a4f0c40cbe43b5ee",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458354+00:00"
-    },
-    {
-      "sol_number": "SPE7M526T161A",
-      "title": "59--ANTENNA",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "59",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/f49f938d75d2440590b1a03261502f11/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f49f938d75d2440590b1a03261502f11",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458402+00:00"
-    },
-    {
-      "sol_number": "1232SA26P0464",
-      "title": "Consolidated Sterilizer System (Brand Name SR-24D or Equal)",
-      "agency": "USDA ARS AFM APD",
-      "psc_code": "6640",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/f4358c683a704610a484fce3c96f6ef8/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f4358c683a704610a484fce3c96f6ef8",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458462+00:00"
-    },
-    {
-      "sol_number": "SPE4A626T11A2",
-      "title": "66--TRANSDUCER,MOTIONAL",
-      "agency": "DLA AVIATION",
-      "psc_code": "66",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/f302a993aadc43c89e2a7bda443f6c26/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f302a993aadc43c89e2a7bda443f6c26",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458514+00:00"
-    },
-    {
-      "sol_number": "SPE7MC26T150F",
-      "title": "48--VALVE,REGULATING,FLUID PRESSURE",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "48",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/f242c74e430f482d9a6382aa7ae7e3d1/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f242c74e430f482d9a6382aa7ae7e3d1",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458567+00:00"
-    },
-    {
       "sol_number": "75N95024R00094",
       "title": "Chemistry, Manufacturing and Controls and Related Services for Development of Drug Substances",
       "agency": "NATIONAL INSTITUTES OF HEALTH NIAID",
@@ -926,222 +692,6 @@
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=a66fa049719245f4ad70e762c9f99b36",
       "description_enriched": false,
       "fetched_at": "2026-08-17T13:30:51.637301+00:00"
-    },
-    {
-      "sol_number": "SPE7M126T185B",
-      "title": "61--CONTACTOR,MAGNETIC",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "61",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/f02c10e1fddd4388842f257c6ac762c4/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f02c10e1fddd4388842f257c6ac762c4",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458685+00:00"
-    },
-    {
-      "sol_number": "SPE7MC26T101Z",
-      "title": "48--VALVE,CHECK",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "48",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/ef49a47ce9304d89a243f56480ac730d/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ef49a47ce9304d89a243f56480ac730d",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458743+00:00"
-    },
-    {
-      "sol_number": "SPE7M526T043L",
-      "title": "59--HEADSET,ACOUSTICAL",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "59",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/eef1f34bd7bb4b60a01099164aa6aad2/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=eef1f34bd7bb4b60a01099164aa6aad2",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458794+00:00"
-    },
-    {
-      "sol_number": "36C10X26Q0123",
-      "title": "6640--NX EQ Automated Coverslipper Machines (VA-26-00027783)",
-      "agency": "SAC FREDERICK (36C10X)",
-      "psc_code": "6640",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/ec8c829f96414c25bc9d4b67d09d1f34/view",
-      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/560209c98d6347e58c54d6343ea15089/download",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ec8c829f96414c25bc9d4b67d09d1f34",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458858+00:00"
-    },
-    {
-      "sol_number": "SPE7M526T114C",
-      "title": "59--CONNECTOR,RECEPTACL",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "59",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/ebe073c0f7db43c0b40535352ae9187f/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ebe073c0f7db43c0b40535352ae9187f",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458909+00:00"
-    },
-    {
-      "sol_number": "20260001251",
-      "title": "Landline Sigonella",
-      "agency": "NAVSUP FLC SIGONELLA NAPLES OFFICE",
-      "psc_code": "DG11",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/ea900c811c4447129b043297089207be/view",
-      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/7e110fbf7abb49c2a2014b33f427257a/download",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ea900c811c4447129b043297089207be",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.458961+00:00"
-    },
-    {
-      "sol_number": "SPE7M526T287M",
-      "title": "59--FILTER,RADIO FREQUENCY INTERFERENCE",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "59",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/e947904c69a744f385548c09f7fa4aac/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=e947904c69a744f385548c09f7fa4aac",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.459016+00:00"
-    },
-    {
-      "sol_number": "SPE4A626T36Y4",
-      "title": "61--WIRING HARNESS",
-      "agency": "DLA AVIATION",
-      "psc_code": "61",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/e6023ffa22794714b6f891f66cf3a507/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=e6023ffa22794714b6f891f66cf3a507",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.459066+00:00"
-    },
-    {
-      "sol_number": "SPE7M126T7516",
-      "title": "43--SEAL ASSEMBLY,SHAFT",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "43",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/e537b9a3f4e147db8cf658190cb8adaa/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=e537b9a3f4e147db8cf658190cb8adaa",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.459117+00:00"
-    },
-    {
-      "sol_number": "SPE7MC26T112A",
-      "title": "48--VALVE,SAFETY RELIEF",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "48",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/e2a58a851df9450fbbc92bb89d31a719/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=e2a58a851df9450fbbc92bb89d31a719",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.459169+00:00"
-    },
-    {
-      "sol_number": "SPE7M526T285P",
-      "title": "59--LOUDSPEAKER,PERMANENT MAGNET",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "59",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/e28ff169020f412e947e3f74f6ea5bc8/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=e28ff169020f412e947e3f74f6ea5bc8",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.459221+00:00"
-    },
-    {
-      "sol_number": "SPE7M526T291F",
-      "title": "59--ANTENNA",
-      "agency": "DLA LAND AND MARITIME",
-      "psc_code": "59",
-      "posted_date": "2026-08-05",
-      "response_deadline": "",
-      "url": "https://sam.gov/workspace/contract/opp/e2019e0548b64569b803bba183048842/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=e2019e0548b64569b803bba183048842",
-      "description_enriched": false,
-      "fetched_at": "2026-08-05T15:05:38.459270+00:00"
     },
     {
       "sol_number": "N0010426QEC86",
@@ -12844,24 +12394,6 @@
       "fetched_at": "2026-09-18T16:46:01.091277+00:00"
     },
     {
-      "sol_number": "N0025326Q0009",
-      "title": "KB Dock Piers Ladder Replacement",
-      "agency": "NAVAL UNDERSEA WARFARE CENTER",
-      "psc_code": "Z2PZ",
-      "posted_date": "2026-09-02",
-      "response_deadline": "2026-09-19",
-      "url": "https://sam.gov/workspace/contract/opp/eceb3b7f73354f1b9c18efc8aa38fc0f/view",
-      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/0a4da5aa802f4cd299cc7223e26535f3/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/1e574be141494e93866388f2963cbf13/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/2c71ea84d0434ee2b38eaac6fc17e7c0/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/435f24435fd04920af64c0e122c406e5/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/573cf2cf09934a65b886a866656fc36c/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/6ab711e1295a4fbcaae103e3c2654f3c/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/6d39fb25c7814797a324095c444300e6/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/8a89f3688b0f4297bb276e66fada1304/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9401f23cd7794210b1804d723cc4b1eb/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/aeb27f2b174f4968bc9237428e0bbe20/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/c78ecb92438a4073af3740819eb09889/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/cfdc28a2725b4cc4b4c7de68df99e316/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/e9beb04bb270416996353164f7f79567/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/f2a7d378c9014196b65aa8e5e8c18d3a/download",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=eceb3b7f73354f1b9c18efc8aa38fc0f",
-      "description_enriched": false,
-      "fetched_at": "2026-09-02T16:54:20.213464+00:00"
-    },
-    {
       "sol_number": "1202SA26R9501",
       "title": "Crash Attenuating Seat Assemblies Structural Fabrication and Installation Airbus AS-332L1 Super Puma Helicopter",
       "agency": "INCIDENT PROCUREMENT AVIATION BRANCH",
@@ -14426,24 +13958,6 @@
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=dfcdf7fa420c407ab48b19edac1a885e",
       "description_enriched": false,
       "fetched_at": "2026-09-03T16:43:42.382483+00:00"
-    },
-    {
-      "sol_number": "19SP5026Q0027",
-      "title": "Repair and Maintenance Materials for U.S. Embassy Madrid, Spain",
-      "agency": "US EMBASSY MADRID",
-      "psc_code": "5340",
-      "posted_date": "2026-09-04",
-      "response_deadline": "2026-09-19",
-      "url": "https://sam.gov/workspace/contract/opp/e13cc4e7b6844001906f93ba1761fcb8/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=e13cc4e7b6844001906f93ba1761fcb8",
-      "description_enriched": false,
-      "fetched_at": "2026-09-04T16:38:16.639630+00:00"
     },
     {
       "sol_number": "SPE7M826Q0235",
@@ -17506,24 +17020,6 @@
       "fetched_at": "2026-09-08T16:52:49.957642+00:00"
     },
     {
-      "sol_number": "SF9Sep26",
-      "title": "Spots and Futures",
-      "agency": "USDA/RD/CONTRACT OPERATIONS BRANCH",
-      "psc_code": "R702",
-      "posted_date": "2026-09-09",
-      "response_deadline": "2026-09-19",
-      "url": "https://sam.gov/workspace/contract/opp/f7f71ef5852c4d628d09dfa927428814/view",
-      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/84c0fc16c2f64b8d80bfa24cd05c1685/download",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f7f71ef5852c4d628d09dfa927428814",
-      "description_enriched": false,
-      "fetched_at": "2026-09-09T16:55:33.233890+00:00"
-    },
-    {
       "sol_number": "SPE7L726T5140",
       "title": "61--BATTERY BOX",
       "agency": "DLA LAND AND MARITIME",
@@ -18854,24 +18350,6 @@
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=eed839a264564567b545f0add3f83fc2",
       "description_enriched": false,
       "fetched_at": "2026-09-09T16:55:33.237710+00:00"
-    },
-    {
-      "sol_number": "W912L326QA105",
-      "title": "G6 - Mailroom Digital Lockers",
-      "agency": "W7N9 USPFO ACTIVITY WY ARNG",
-      "psc_code": "7125",
-      "posted_date": "2026-09-10",
-      "response_deadline": "2026-09-19",
-      "url": "https://sam.gov/workspace/contract/opp/ff03b94e384848438c25af043fd7f7e2/view",
-      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/83fa84c472b341c58adbbf3661dd9921/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/bf9ea00054b0412d84dfb24e993a3fc7/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/fbfb2c2242cc4b519695156f4772ce38/download",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ff03b94e384848438c25af043fd7f7e2",
-      "description_enriched": false,
-      "fetched_at": "2026-09-10T16:43:37.925159+00:00"
     },
     {
       "sol_number": "SPE7M426T390X",
@@ -29768,18 +29246,18 @@
       "title": "Classified Sound-Attenuated Door and Split-Frame Assembly Package",
       "agency": "FLETC GLYNCO PROCUREMENT OFFICE",
       "psc_code": "5670",
-      "posted_date": "2026-09-18",
+      "posted_date": "2026-09-19",
       "response_deadline": "2026-09-21",
-      "url": "https://sam.gov/workspace/contract/opp/f2b932c90c084973bf913aa65c9e89af/view",
-      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/0e13ffbd3fab499b83a4faff50364263/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/725c70aca4564e7aa77db5a6fdbcf249/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/eadc7e603ea74eaaad16e1c3d8f56446/download",
+      "url": "https://sam.gov/workspace/contract/opp/bacf91318b084c4982d4bf9eaa2cec6c/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/0e13ffbd3fab499b83a4faff50364263/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/117bde0ce38a43f2aaa492f0575e36d7/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/725c70aca4564e7aa77db5a6fdbcf249/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/a8e1d5334c5344e4a9b6d4a23c0dd7cd/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/eadc7e603ea74eaaad16e1c3d8f56446/download",
       "nsns": "",
       "part_numbers": "",
       "quantities": "",
       "pricing_score": 0,
       "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f2b932c90c084973bf913aa65c9e89af",
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=bacf91318b084c4982d4bf9eaa2cec6c",
       "description_enriched": false,
-      "fetched_at": "2026-09-18T16:46:01.090560+00:00"
+      "fetched_at": "2026-09-20T16:34:39.212907+00:00"
     },
     {
       "sol_number": "1333ND26QNB030478",
@@ -29815,7 +29293,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fac77f1292c043c38748d02266f7a087",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.646543+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215811+00:00"
     },
     {
       "sol_number": "N4215826QE080",
@@ -29833,7 +29311,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f9cba0c07b574a18a6ddb442c78b65fb",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.646627+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215862+00:00"
     },
     {
       "sol_number": "140P5326Q0035",
@@ -29851,7 +29329,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f987048ea169478f86d16e30a2819f7a",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.646727+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215926+00:00"
     },
     {
       "sol_number": "36C24426Q0953",
@@ -29995,7 +29473,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fa421a04076a4c248bc6f9ba31318eca",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647406+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216158+00:00"
     },
     {
       "sol_number": "FA480326Q0113",
@@ -30139,7 +29617,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fc7c22265efe4f018bed44e848999c73",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647793+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216281+00:00"
     },
     {
       "sol_number": "SPE1C126Q0501",
@@ -30355,7 +29833,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f9e862347b294dc3a73add275f94d5dc",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.648478+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216465+00:00"
     },
     {
       "sol_number": "N68171-27-Q-J001",
@@ -30373,7 +29851,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fd017461c24447c18259ff32ac99081b",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.648622+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216509+00:00"
     },
     {
       "sol_number": "FA448426Q0035",
@@ -30607,7 +30085,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=faac480bc829409681e87928f1759b7a",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.648856+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216585+00:00"
     },
     {
       "sol_number": "N0010426QNF26",
@@ -30841,7 +30319,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fd74ffc5ece540bdb95ff63aba48af3a",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649248+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216701+00:00"
     },
     {
       "sol_number": "W912LN26PA015",
@@ -30859,7 +30337,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fcbec2a565124fe49366b4755dd1e834",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649376+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216774+00:00"
     },
     {
       "sol_number": "1240LU26C0048",
@@ -30877,7 +30355,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fc9d8601cb10476fa774f11ad174c99a",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649440+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216815+00:00"
     },
     {
       "sol_number": "15BBNF26C51100001",
@@ -30895,7 +30373,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fc83052765004875b4f1d91b1abe150b",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649498+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216853+00:00"
     },
     {
       "sol_number": "1305M226Q0174",
@@ -30913,7 +30391,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f9041231f8bf434b866660517758ab48",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649748+00:00"
+      "fetched_at": "2026-09-20T16:34:39.217014+00:00"
     },
     {
       "sol_number": "SPRPA1-26-C-VA69",
@@ -31379,9 +30857,9 @@
       "quantities": "",
       "pricing_score": 0,
       "pricing_flags": [],
-      "description": "Request for Information (RFI) Loopback notice: Based on the technical analysis of the responses received to the RFI posting(s) on both SAM.gov and the General Services Administration (GSA) Multiple Award Schedule (MAS), the VA s acquisition strategy will be to award the requirements, on a sole source basis, to Ameresco Federal Solutions, Inc. against their GSA MAS Contract 47QSHA21D000R.",
-      "description_enriched": true,
-      "fetched_at": "2026-09-19T16:07:42.642614+00:00"
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=db63a3447b854e3b82bf45567c8aad89",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.212851+00:00"
     },
     {
       "sol_number": "140D0426Q0908",
@@ -31397,9 +30875,9 @@
       "quantities": "",
       "pricing_score": 0,
       "pricing_flags": [],
-      "description": "The contractor shall furnish all labor, materials, equipment, services, and related operations necessary to perform Heating Ventilation and Air Conditioning Maintenance and Repair in accordance with the performance work statement.",
-      "description_enriched": true,
-      "fetched_at": "2026-09-19T16:07:42.642737+00:00"
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f483a042b42c4a52a149d79e3aacf9e2",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213363+00:00"
     },
     {
       "sol_number": "75N98026Q01180-04776",
@@ -31415,9 +30893,9 @@
       "quantities": "",
       "pricing_score": 0,
       "pricing_flags": [],
-      "description": "Please see attached combined synopsis/solicitation for an AVANCE NEO-X 800 MHz console and associated components for use with the customer's existing magnet, together with cryogenic and room-temperature probes, sample automation, temperature-control accessories, workstation/software, and related support. Questions and answers attached.",
-      "description_enriched": true,
-      "fetched_at": "2026-09-19T16:07:42.642864+00:00"
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=5c6e568575714ebb90e6575fcc538758",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213405+00:00"
     },
     {
       "sol_number": "W912QM-26-Q-A047",
@@ -31433,9 +30911,9 @@
       "quantities": "463",
       "pricing_score": 0,
       "pricing_flags": [],
-      "description": "The 410TH Contracting Support Brigade, Regional Contracting Office (RCO) - Soto Cano proposes to procure one (1) each 463L Air Cargo Electronic Pallet Scale, Brand Name or equal in accordance with Salient Characteristics to support the 612th ABS unit located in Soto Cano Air Base, Honduras.",
-      "description_enriched": true,
-      "fetched_at": "2026-09-19T16:07:42.643003+00:00"
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=027114f6b2014e4fa3fd2ee54fa6af78",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213622+00:00"
     },
     {
       "sol_number": "S5121A2641165",
@@ -31453,7 +30931,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=d5704e9bc72c44a9b30ebe336d0de461",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644365+00:00"
+      "fetched_at": "2026-09-20T16:34:39.213701+00:00"
     },
     {
       "sol_number": "S5121A26PE006",
@@ -31471,7 +30949,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=cdb2027c48214f6ba802d74d6680af76",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644440+00:00"
+      "fetched_at": "2026-09-20T16:34:39.213743+00:00"
     },
     {
       "sol_number": "75D301-26-Q-79226",
@@ -31489,7 +30967,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=a57aefffa84f4c67ba67bf96f3f8b14e",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644516+00:00"
+      "fetched_at": "2026-09-20T16:34:39.213787+00:00"
     },
     {
       "sol_number": "15A00026FAQA00312",
@@ -31507,7 +30985,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=3b01ea4e40d849b59b1cdc1c2e566636",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644600+00:00"
+      "fetched_at": "2026-09-20T16:34:39.213928+00:00"
     },
     {
       "sol_number": "75N98026Q01246 ",
@@ -31525,7 +31003,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=1f2d25703fa64cca86c62a479de4eac4",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644661+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214024+00:00"
     },
     {
       "sol_number": "FA466126Q0096",
@@ -31543,7 +31021,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=62e4b416e6b34c7384e5cab2405c4760",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644732+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214203+00:00"
     },
     {
       "sol_number": "W912HZ26QA059",
@@ -31561,7 +31039,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=13255f9b15894b80b88a1c766e0dac61",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644813+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214291+00:00"
     },
     {
       "sol_number": "75D301-26-Q-79283",
@@ -31579,7 +31057,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=b4a1b3a7726e4a0080a575ee9b04bddd",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644891+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214398+00:00"
     },
     {
       "sol_number": "693JJ926RQ000496",
@@ -31597,7 +31075,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=6ce5b79291924166917222ddd98b29d3",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.644948+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214494+00:00"
     },
     {
       "sol_number": "N0010426QDB92",
@@ -31615,7 +31093,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=bf34897e42b342e4b08720722914acc6",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645010+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214787+00:00"
     },
     {
       "sol_number": "N0010426QDB93",
@@ -31633,7 +31111,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=b83c4e078f67476fb98642d899e0110a",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645071+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214827+00:00"
     },
     {
       "sol_number": "N0010426REJ00",
@@ -31651,7 +31129,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=a228c22dff13445f91fbdc34e10c42be",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645132+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214866+00:00"
     },
     {
       "sol_number": "N0010426QDB90",
@@ -31669,7 +31147,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=2a1412e077fc4547a1e3943428efbacc",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645193+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214905+00:00"
     },
     {
       "sol_number": "N0010426QDB91",
@@ -31687,7 +31165,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=098d02974b5845559e1b694f1e2a0a3d",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645254+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214944+00:00"
     },
     {
       "sol_number": "N0010426QDB94",
@@ -31705,7 +31183,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=05b6e566d9754851b07cf90c6ef9a11e",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645330+00:00"
+      "fetched_at": "2026-09-20T16:34:39.214982+00:00"
     },
     {
       "sol_number": "N6449826Q5279",
@@ -31723,7 +31201,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=d56270f24b3b497da93cd7c1d7f9d8f7",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645383+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215015+00:00"
     },
     {
       "sol_number": "N0038326QFC10",
@@ -31741,7 +31219,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=222d679281fc457b948aa3c6de98520d",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645436+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215048+00:00"
     },
     {
       "sol_number": "N0010426QEH41",
@@ -31759,7 +31237,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=7c4e65242858437b9b06c891796a62cd",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645489+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215089+00:00"
     },
     {
       "sol_number": "N0010426RZB85",
@@ -31777,7 +31255,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f46cb63f872945eabdd2301fa97d4075",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645541+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215126+00:00"
     },
     {
       "sol_number": "SPRPA125REC15",
@@ -31795,7 +31273,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=dee2c7336ff9403585f5471335db5002",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645593+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215199+00:00"
     },
     {
       "sol_number": "SPE4A526R0245",
@@ -31813,7 +31291,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=b207a4104d784d4982330ddb90a01f0f",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645644+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215232+00:00"
     },
     {
       "sol_number": "140A2326Q0270",
@@ -31831,7 +31309,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=a92bbb826da54d40a18efa45f97458c7",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645706+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215271+00:00"
     },
     {
       "sol_number": "N0010425RFD37",
@@ -31849,7 +31327,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=81abb18010cc4896bce1fbf695663c0f",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645759+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215306+00:00"
     },
     {
       "sol_number": "SPRPA126RWA44",
@@ -31867,7 +31345,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=7f7cf3bf808e4d509f31655e7a906750",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645813+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215340+00:00"
     },
     {
       "sol_number": "140G0226F0235",
@@ -31885,7 +31363,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=7c8a8397448c40f28db8921d80ca6242",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645880+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215384+00:00"
     },
     {
       "sol_number": "N0010426RZB40",
@@ -31903,7 +31381,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=616efcc4def24c0eb662339a1e3ebcb9",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645933+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215418+00:00"
     },
     {
       "sol_number": "140L6326Q0029",
@@ -31921,25 +31399,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=33d6ccee57a94962994baf5a68ce0079",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.645987+00:00"
-    },
-    {
-      "sol_number": "W912HZ26QA063",
-      "title": "Notice of Intent to Sole Source Service Contract for MTS Frame Actuator Reseal and Calibration",
-      "agency": "W2R2 USA ENGR R & D CTR",
-      "psc_code": "J066",
-      "posted_date": "2026-09-18",
-      "response_deadline": "2026-09-19",
-      "url": "https://sam.gov/workspace/contract/opp/fbf88014b1e049159714863f5ac9e62d/view",
-      "attachments": "",
-      "nsns": "",
-      "part_numbers": "",
-      "quantities": "",
-      "pricing_score": 0,
-      "pricing_flags": [],
-      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fbf88014b1e049159714863f5ac9e62d",
-      "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.646147+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215493+00:00"
     },
     {
       "sol_number": "36C24126Q0821",
@@ -32029,7 +31489,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fedef7f1a03740bf8e37de4f8eebb912",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647102+00:00"
+      "fetched_at": "2026-09-20T16:34:39.215964+00:00"
     },
     {
       "sol_number": "FA460026Q0118 ",
@@ -32047,7 +31507,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fe6fc9d97265461c8bafe9cfb5e82770",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647186+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216018+00:00"
     },
     {
       "sol_number": "75H71326Q00076",
@@ -32065,7 +31525,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fc52a12434c84192883416af95c91476",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647252+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216059+00:00"
     },
     {
       "sol_number": "36C25026Q0759",
@@ -32083,7 +31543,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fb792b23b1ef40c3804daabcb7b43956",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647343+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216118+00:00"
     },
     {
       "sol_number": "W50S7G-26-Q-A021",
@@ -32101,7 +31561,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f93fd6034bfd4f9aa363e93df87ee129",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647477+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216204+00:00"
     },
     {
       "sol_number": "FA441826Q0088",
@@ -32155,7 +31615,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ffcfce6ba12d4cdcbf3d0c29089bb8c9",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647736+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216244+00:00"
     },
     {
       "sol_number": "W913E526QA012",
@@ -32173,7 +31633,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fcee793091ee4cfab340bc12ee2eb9e5",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647912+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216323+00:00"
     },
     {
       "sol_number": "FA301626Q0146",
@@ -32191,7 +31651,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fccef0d1c86b4b34b1918265ab875a7a",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.647984+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216369+00:00"
     },
     {
       "sol_number": "RFI091826",
@@ -32209,7 +31669,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fbe76aee769c46ff9af8c6ad5a63248c",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.648066+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216422+00:00"
     },
     {
       "sol_number": "W912HQ26QA032",
@@ -32281,7 +31741,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f9c5583e285e43faa020d96304393b3f",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.648689+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216552+00:00"
     },
     {
       "sol_number": "W912QR-27-BRADFORD-PA",
@@ -32335,7 +31795,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=feca80e57f1f4659b6f46f119084f156",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649125+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216623+00:00"
     },
     {
       "sol_number": "SPE7L126U0672",
@@ -32353,7 +31813,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fe8103bfa5fb41bc8fb0d506d5210674",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649182+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216658+00:00"
     },
     {
       "sol_number": "SPE7LX26U9717",
@@ -32371,7 +31831,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fd72d295ba3340cda82d3ce8729e01a4",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649316+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216736+00:00"
     },
     {
       "sol_number": "140FC326Q0052",
@@ -32389,7 +31849,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fb9ae8a21d7d4412aa45100e47b2bbb8",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649556+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216890+00:00"
     },
     {
       "sol_number": "W912P726DA005",
@@ -32407,7 +31867,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fa6cdee300f9460489850922900baf59",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649633+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216941+00:00"
     },
     {
       "sol_number": "SPE7LX26U9578",
@@ -32425,7 +31885,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=fa136bea48a949b5a78781ac68bbfddd",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649687+00:00"
+      "fetched_at": "2026-09-20T16:34:39.216975+00:00"
     },
     {
       "sol_number": "FA302226C0021",
@@ -32443,7 +31903,7 @@
       "pricing_flags": [],
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f8d3a0d859d34271893ff6ce48e751e1",
       "description_enriched": false,
-      "fetched_at": "2026-09-19T16:07:42.649804+00:00"
+      "fetched_at": "2026-09-20T16:34:39.217049+00:00"
     },
     {
       "sol_number": "SPE7M026T8379",
@@ -32570,6 +32030,528 @@
       "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f519d604715f4063addffa2974d81b07",
       "description_enriched": false,
       "fetched_at": "2026-09-19T16:07:42.650431+00:00"
+    },
+    {
+      "sol_number": "75A50226R00024",
+      "title": "Emergency Response Wraparound Services",
+      "agency": "ASPR/DAAPPO/ORM HQ",
+      "psc_code": "R429",
+      "posted_date": "2026-09-20",
+      "response_deadline": "2026-09-24",
+      "url": "https://sam.gov/workspace/contract/opp/2323611ba8654cdea17d76320932075a/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/03a6f2196ba1482cb341004d45a9494c/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/33b8cf03939c4bd4b8fa71397ded0867/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/34ac027da4024a5fbaceaa603f2cc2fe/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/6112c7a2e0ea4460a1d2a32551e72484/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/978c27052407452f9d0cef565b95f355/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9916f34443e7432e94aeaf5f8a3c3579/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9f062911e3b844dfbb03e358af1c978b/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/a8a35370cef94108881808ee4bbfbeee/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/aaab30788f144b82b78ab59d7a8e69b4/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/db0889d2e4444aeeb4e593c240322de8/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/ff847fc2d4da4317a4dafdf62b0d11c5/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "Department of Health and Human Services (HHS), the Administration for Strategic Preparedness and Response (ASPR), has a requirement for emergency response wraparound services. All questions are due on Tuesday, September 22 at 12PM eastern time and proposals are due on Thursday, September 24 at 5PM eastern time. Please see attachments for additional details.",
+      "description_enriched": true,
+      "fetched_at": "2026-09-20T16:34:39.209259+00:00"
+    },
+    {
+      "sol_number": "AA-2027-01",
+      "title": "SR Power Supplies Rack Detailed Design for ALS-U",
+      "agency": "BERKELEY NATL LAB - DOE CONTRACTOR",
+      "psc_code": "C222",
+      "posted_date": "2026-09-20",
+      "response_deadline": "2026-10-02",
+      "url": "https://sam.gov/workspace/contract/opp/50f33599ceea4a469164f74bf889d36f/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/116820930fba4b0ab62bdadccf3b03b8/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/11ad5286421e451faa58581731b2aeea/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/12fcf9da30ae48ce8922cfd00d2408ee/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/1fa292c2426b464db8f417edc980c74d/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/3e615dbbed0745f8a68c96e555465fb5/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "Dear Prospective Offeror, The University of California, on behalf of the Lawrence Berkeley National Laboratory (LBNL), would like to invite you to participate in Request for Proposal (RFP) No. AA-2027-01 for ALS-U \u200bStorage Ring Power Supplies Rack Designs. The RFP and associated documents (listed below) are attached hereto: 0. RFP and Proposal Preparation Instructions 1. \u200b \u200b Statement of Work; inclusive of all \u200br\u200beferenced documents. Please view the following Google Drive for complete Technical documentation: https://drive.google.com/drive/u/0/folders/1lVLQphc5On3Uki29Zgcj63Htsmv-ZnUj 2. Sample Subcontract 3. \u200bALS-U Quality Evaluation Survey ( required with submission) \u200b4. \u200b\u200b\u200bRep Cert Form (required with submission) Timeline of Events: Questions for Clarification - no later than \u200bS\u200beptember 24, 2026 Pre-Proposal Conference - Week of September 28, 2026, if necessary Submissions due - no later than \u200bOctober 2, 2026.",
+      "description_enriched": true,
+      "fetched_at": "2026-09-20T16:34:39.209610+00:00"
+    },
+    {
+      "sol_number": "70B03C26A00000035",
+      "title": "Firing Range Services for CBP Port of Baltimore",
+      "agency": "BORDER ENFORCEMENT CONTRACTING DIVISION",
+      "psc_code": "W069",
+      "posted_date": "2026-09-20",
+      "response_deadline": "",
+      "url": "https://sam.gov/workspace/contract/opp/511028ec5b6c4524ba05a138ec07c0c6/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/c65d79c329ec4fffb9d5cf481ef272ab/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "IAW with RFO FAR 13.101(b) (Only one source reasonably available), CBP Awarded a firm fixed price Blanket Purchase Agreement to Wolfland, Inc for Firing Range and related services for quarterly qualification of officers in the Area Port of Baltimore, Maryland. Period of Performance 9/29/2026 to 9/28/2027.",
+      "description_enriched": true,
+      "fetched_at": "2026-09-20T16:34:39.209695+00:00"
+    },
+    {
+      "sol_number": "70LART26QPFB00015",
+      "title": ".22 LR Standard Velocity 40 Grain Ammunition",
+      "agency": "FLETC ARTESIA PROCUREMENT OFFICE",
+      "psc_code": "1305",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-21",
+      "url": "https://sam.gov/workspace/contract/opp/ba4a26e5855e470ca4ac93f63c67f2c5/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/42f0a1a381d44bbf8719a61ec051b2f3/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/43c9caf3d5ed46cd955bc144c870b0e4/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/5aad470c771b432ea3e28af2670c8794/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/c016e4fae8df4b5583d3c92581a8d13b/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/d664739e662548a991f7c01892bc37a2/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ba4a26e5855e470ca4ac93f63c67f2c5",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.212958+00:00"
+    },
+    {
+      "sol_number": "70LART26QPFB00029",
+      "title": "Hardwood pistol rack with 14 aluminum pins",
+      "agency": "FLETC ARTESIA PROCUREMENT OFFICE",
+      "psc_code": "9999",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-21",
+      "url": "https://sam.gov/workspace/contract/opp/92fa248d4f194f95a73659e45ee8ea12/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/0c1d83e3e63f4046a58755f49931b4de/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/1b891f9896b34e8ab76cfc38d97367c2/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/72c95213f01942f4b4cd9fb6bcd1fdd3/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/773db96e167d4acc845f2eb2f216fa8f/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/7ade40239f904c77b0b4626d56adfd62/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/94793b27da0d42b8913ef29012309083/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/ba144a8384544d41be4a3ffb80978301/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/c95926a7f08f47428d14dfe1f21db924/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/ed007e28f1224b8ba2e1fd270893ce3e/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/f129283439ae4904a8c244f7a6e9d109/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=92fa248d4f194f95a73659e45ee8ea12",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213019+00:00"
+    },
+    {
+      "sol_number": "FA301626Q3312",
+      "title": "Bldg 3312, METC Furniture Relocation and Storage",
+      "agency": "FA3016  502 CONS CL",
+      "psc_code": "V112",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-21",
+      "url": "https://sam.gov/workspace/contract/opp/3883a4d4e0a043e086144749830bfc96/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/5528d73103f14409828690a8fb013862/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/7d2a96edf9e145fcbdefba442559e9e6/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/96c03cbc09d04a0e8dfa680ce9fb22a6/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/fb21fe965b164fba8aba8780658aefbf/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/fdd5b6ae6191466286873940d6eaf7b8/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=3883a4d4e0a043e086144749830bfc96",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213081+00:00"
+    },
+    {
+      "sol_number": "FA301626Q1469",
+      "title": "Bldgs 1469, 1475, 1479 METC Furniture Relocation and Storage",
+      "agency": "FA3016  502 CONS CL",
+      "psc_code": "V112",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-21",
+      "url": "https://sam.gov/workspace/contract/opp/2e20258dcdd34a6ebc9354cc2ae98807/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/368d55b39d30498b9c58149373a57d50/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/50263660fa7148219814564d5d9f4aa8/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/80ed6b00114d4b28ace9dd141f62b55c/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/80fa2e943eea48748b27ca267cc2bab6/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/bf421e525fe542f7abd92b29267e9f6a/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=2e20258dcdd34a6ebc9354cc2ae98807",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213137+00:00"
+    },
+    {
+      "sol_number": "FA301626Q3314",
+      "title": "Bldg 3314, METC Furniture Relocation and Storage",
+      "agency": "FA3016  502 CONS CL",
+      "psc_code": "V112",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-21",
+      "url": "https://sam.gov/workspace/contract/opp/2a73a0c691f446ba899e55877782dcd8/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/092cdd3848584588afed7be883ba2611/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/3e763115a43f4597b66c67c0cdfc9605/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/7b11c0c6edcb4ec78d5f6fbade39ed48/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/d1053fcc6343425381426ab1757feb23/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/fa039770c3964a2cbedc0cda63066473/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=2a73a0c691f446ba899e55877782dcd8",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213190+00:00"
+    },
+    {
+      "sol_number": "47QMCA26Q0106",
+      "title": "ATF - Nissan Pathfinder",
+      "agency": "GSA/FAS AUTOMOTIVE CENTER",
+      "psc_code": "2310",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-21",
+      "url": "https://sam.gov/workspace/contract/opp/20795626735d4d27bb0dd9b5d664aae7/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/1bb63901ad8248e28a6778ade755dd2f/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/3631ee6ca14a41a19402a84742243744/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/3d3dd2ed536c48eea321d0f1da2555dd/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/4b7ee376f8814f978a195db8f0e39887/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/587b0e28798841378dea7a441e2a84b7/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/8bae22ab1033487c8ce58070083813bb/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9d8ab06d1a1a4dedb94ba27f53235d6e/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/a0f3578f78364ccf9082edd20ee01917/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/d796806d6271404d949dcc56946b6ab5/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/ff12c8036e13433fbdecfb4d2a0b2842/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=20795626735d4d27bb0dd9b5d664aae7",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213248+00:00"
+    },
+    {
+      "sol_number": "FA301626Q1479",
+      "title": "METC Microwave and Refrigerator Relocation and Storage",
+      "agency": "FA3016  502 CONS CL",
+      "psc_code": "V112",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-21",
+      "url": "https://sam.gov/workspace/contract/opp/092fd1df0eaa44559121e9f1172afbb5/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/628766f9e9814129948c9b6f57298ce3/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/665f9229d19249aca732651e17ed0712/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/8e413d751fd24f298b32a1733b9ec01e/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/b14748bd37b1446c8e64b3ebb017724f/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/db1001816c244ee9b6e95a9d6c683bcc/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=092fd1df0eaa44559121e9f1172afbb5",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213299+00:00"
+    },
+    {
+      "sol_number": "W50S7226Q7114",
+      "title": "Air compressor with incidental installation",
+      "agency": "W7M8 USPFO ACTIVITY IAANG 185",
+      "psc_code": "4310",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-22",
+      "url": "https://sam.gov/workspace/contract/opp/51a52c81001b42baad7ee895b3777213/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/3077cb518af24c35b20cc342a884d3eb/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/4d1545c807ca403586b69ed65787d4db/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/4ea18520d3814b54990331aede182419/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/828d155a56794bc8a10d4c13aa497aaf/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/aafd4dec80eb4b1ba3756f7becf4537f/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/f55fead21c3f437eaa57557fe6f131a7/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=51a52c81001b42baad7ee895b3777213",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213456+00:00"
+    },
+    {
+      "sol_number": "W912HQ26S0080",
+      "title": "UNMANNED AIRCRAFT SYSTEMS (UAS) FOR USACE",
+      "agency": "W4LD USA HECSA",
+      "psc_code": "1550",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-22",
+      "url": "https://sam.gov/workspace/contract/opp/22352c5f4252452794bfc8d35064c43a/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/1523481ce76443a589fca6c1334d05ef/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/3091b86ab55841029717a14ef0da9d9f/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/883556ded661458dbfefd198bd900324/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9434c22be5b9462ea124f7e4d1d3ad81/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/e539f6e23628486fa9c62d252da65388/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/f5cc6aea88de461fa985198ad6e1bec3/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=22352c5f4252452794bfc8d35064c43a",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213507+00:00"
+    },
+    {
+      "sol_number": "75A50326R00007",
+      "title": "SNS Pharmaceutical Logistic Replenishment Requirement",
+      "agency": "ASPR/ORM-SNS",
+      "psc_code": "6505",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-22",
+      "url": "https://sam.gov/workspace/contract/opp/1a8feff16b0e49e18567d5dfb3a55d8f/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/263dee92f7ba4f4abe6d6d703c242c7e/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/2ecbdd8d057b4f4db4ed5c394c98f2e0/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/532459278f884daba9cfc35d2a8b5514/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/76f3dc45989743519fc7763f35173488/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/975608a382064d0b98854d9ee703ece2/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9d961e695beb4734a9237900430fec04/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/dc0ed5422e724726991642d15571e8bb/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/dee83f0d8a3648a49de66ceb4914e796/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/e2d7e8bc48ed406a961e5a11be6f4103/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/eb7f63438bf94f97ba0b3e1d1de878e4/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=1a8feff16b0e49e18567d5dfb3a55d8f",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213567+00:00"
+    },
+    {
+      "sol_number": "1333ND26QNB640604",
+      "title": "BRAND-NAME ONLY QUANTSTUDIO 5",
+      "agency": "DEPT OF COMMERCE NIST",
+      "psc_code": "6640",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-23",
+      "url": "https://sam.gov/workspace/contract/opp/91d0bb2bdf044003b9aa57e4b7673363/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/7e29d9f4b5fa4cca84d371f6bfa1c539/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=91d0bb2bdf044003b9aa57e4b7673363",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213825+00:00"
+    },
+    {
+      "sol_number": "70LGLY26QGLB00056",
+      "title": "High-Velocity Water-Cable Safety Barriers and Crash Attenuator Systems",
+      "agency": "FLETC GLYNCO PROCUREMENT OFFICE",
+      "psc_code": "5660",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-23",
+      "url": "https://sam.gov/workspace/contract/opp/4d77f174a3894fd788447f0ed398d9e9/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/531940ffa1114566b334b67d1314ea33/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9b0b002d5ab245fdbf8fa7cad26d8ea9/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/d101eda354c8467eba3be0e81576ce98/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=4d77f174a3894fd788447f0ed398d9e9",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213875+00:00"
+    },
+    {
+      "sol_number": "FA330026AV_Install_RFQ",
+      "title": "FA330026Q0025 -Eaker Center Bldg. 832 AV Install_Amendment 0002",
+      "agency": "FA3300  42 CONS CC",
+      "psc_code": "5836",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-23",
+      "url": "https://sam.gov/workspace/contract/opp/34ec63e2a58d427dacaeb890d792aafa/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/4c141241fe7d4d1587eb9b88cda3efd4/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/61a1a041237949f184e61843d3acde8c/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/63d394b41d124f6e9849f5088eb70295/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/67a089420252473b9e0d989fcab0e78a/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/7f598db763234a7fbf5f7d527755979b/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/814a7ea7f06f42148ce47146078d0559/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/8ebd364922734bf19f7ceb7d3c06ba38/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=34ec63e2a58d427dacaeb890d792aafa",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.213986+00:00"
+    },
+    {
+      "sol_number": "F1ATA26208A001",
+      "title": "FY26_Building 693_Audio-Visual (AV) Requirement_Maxwell AFB_Solicitation_AMENDMENT 0002",
+      "agency": "FA3300  42 CONS CC",
+      "psc_code": "5836",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-23",
+      "url": "https://sam.gov/workspace/contract/opp/1b7ce26b87cc4ed899b2a54c6df63459/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/01f590945df14546b2b221dd6056053a/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/15bdd7a7e63b42c2a864235cf6547aba/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/bab4f1db234742ed8b8269e777f041cd/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/dfc801b0de824a60aeb3a58d2a4d4ed2/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/f0dfee060f164a6ab4f8a70c4ab38da1/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/fe16f8bea46941869b56bde6a25255e9/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=1b7ce26b87cc4ed899b2a54c6df63459",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214088+00:00"
+    },
+    {
+      "sol_number": "W50S74-26-Q-A022",
+      "title": "Repair RTS Multiple Buildings",
+      "agency": "W7MX USPFO ACTIVITY CAANG 163",
+      "psc_code": "Z2AA",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-24",
+      "url": "https://sam.gov/workspace/contract/opp/b6918b460395420ead2f51b1f8ba9edb/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/048f303bead54a5f83cfd6bca398b877/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/09b4762925b44f0fab5ea790696ad8bf/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/1ab5f7a3857e43a4b064e2d504a29363/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/36eafdc830504e4a97de0447417c084a/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/715ac2cfa1b949cd9fe20b623d194b0b/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/8c97ff99969443449e6a784e9568a430/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/97795bc095474a84be1fc92858e3b779/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9aba17755e994a609aec2d163aefcc6a/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/d2e6180f05f043b680c72755519783b0/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/d8a362542cbc41b4b792f1dd1aa9597e/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/df275fba96f74abd854046a296a38739/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/e392d5e385e14b0c99f7702ec98eaa9f/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=b6918b460395420ead2f51b1f8ba9edb",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214157+00:00"
+    },
+    {
+      "sol_number": "68HE0826Q0047",
+      "title": "66--NOI Single-Source PO ChemWell 2910 ELISA Analyzer",
+      "agency": "REGION 8 CONTRACTING OFFICE",
+      "psc_code": "6640",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-24",
+      "url": "https://sam.gov/workspace/contract/opp/3944eec05d7848ab87389da1700b691e/view",
+      "attachments": "",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=3944eec05d7848ab87389da1700b691e",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214243+00:00"
+    },
+    {
+      "sol_number": "W91248-26-R-0040",
+      "title": "Barracks Maintenance OTA",
+      "agency": "W6QM MICC-FT CAMPBELL",
+      "psc_code": "S216",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-25",
+      "url": "https://sam.gov/workspace/contract/opp/901304f05eb74fe9978237e8f405f1e8/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/02b6c4a5950c493fa72d1502d8c758d7/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/4ad3b52fadbd426aac848b5445185f06/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/5261959d87b64e4380f1a691a119391f/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/5c6a194f3efd4a37b466fbc4edb0aee3/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/8de25fe0eb7b416ba2b3669f76c8a64b/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/b83211378a7548f8aa4572fc38f6a27f/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/cf3c1ddfeafe472cac83c99abae9e900/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/e0139b6a46a04431b31d6e2ee50ebc82/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/f2a5a0bfbf8b4caba0b58e2b950615a7/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/fc4726d183e64747b1f7480e73189ebc/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=901304f05eb74fe9978237e8f405f1e8",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214348+00:00"
+    },
+    {
+      "sol_number": "47QACA26R0306",
+      "title": "Risk Management, Financial Analysis and Administrative Support Services",
+      "agency": "PBS R4 (AMD) ACQUISITION MGMT DIVISION",
+      "psc_code": "R699",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-29",
+      "url": "https://sam.gov/workspace/contract/opp/f05a2b5b5d0b401eb69ac1b168aa7bce/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/093b35a61d2f44cd83e4767708608749/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/64cfc2c75e54445fb77fbe8eb50ab533/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/72d2edef0a344336827985c8af97d56e/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/870926394612490fa540d77f723d5407/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/97396686b2884ac48cd2491ec73359b9/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/b311d89787d642dbb5e68fc9cebc8697/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/d0f19300af534beda026b77b26ec8f0b/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/fe6e8a778de6483897a0233c3cf996fb/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=f05a2b5b5d0b401eb69ac1b168aa7bce",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214458+00:00"
+    },
+    {
+      "sol_number": "36C25026R0092",
+      "title": "Ohio Wide Water Testing",
+      "agency": "250-NETWORK CONTRACT OFFICE 10 (36C250)",
+      "psc_code": "F103",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-09-29",
+      "url": "https://sam.gov/workspace/contract/opp/65498b081ca94ecfb24bac1f921994ea/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/15dbcac6f32946ceb4cdff534fe340a1/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/4867e359f2ad46fe9357d8344d688444/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/5b0bf86bd86d4c888816ef8b0f576493/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/bb44414f5ef146eea3c8c4c825b0c112/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/dfffa366b557436791eeeb38eb4adabb/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/e7642dab11e54bc7ba85f67dd4a768c4/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/f16c81698b104abf9160e7c0662703b6/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=65498b081ca94ecfb24bac1f921994ea",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214544+00:00"
+    },
+    {
+      "sol_number": "FY2027-LS-BPA",
+      "title": "Notice of  Intent - BPA for Language Services",
+      "agency": "OFFICE OF LANGUAGE SERVICES",
+      "psc_code": "R608",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-10-03",
+      "url": "https://sam.gov/workspace/contract/opp/a3ef695d26f24df9953b961b09f7ffb2/view",
+      "attachments": "",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=a3ef695d26f24df9953b961b09f7ffb2",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214582+00:00"
+    },
+    {
+      "sol_number": "CEHNC-031467-OT",
+      "title": "Modular Power Generation and Distribution ",
+      "agency": "W2V6 USA ENG SPT CTR HUNTSVIL",
+      "psc_code": "",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-10-05",
+      "url": "https://sam.gov/workspace/contract/opp/d497aeb0c9b944fe8e58255a446d83e1/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/1a2cbf3a4da24837bb90ec84f1330474/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/a4d6af4fff4841a2bcf19014dd3c29e8/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=d497aeb0c9b944fe8e58255a446d83e1",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214624+00:00"
+    },
+    {
+      "sol_number": "1240BH26Q0041",
+      "title": "GAOA Cordova Outhouse Replacement Chugach NF",
+      "agency": "CHUGACH NATIONAL FOREST",
+      "psc_code": "Y1FB",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-10-06",
+      "url": "https://sam.gov/workspace/contract/opp/d7cd64ec9795405198144cf5df1d5055/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/04856772b9774cb4b40441127f6ddf27/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/064ae18b3a0548fb938c4673c81824b4/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/1422b37ec8394aecbea19b14b825e817/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/75b3370ebbf444f3a2773dfdf6e28b67/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/84678e7b24304cf4b8940b5e653def62/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/9a978b38eb3245a99971bf90726a1cc8/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/a066cc848e1d4ce39d0fc54ff2bf5f33/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/f66e70c9022c4621aaeea0206e25c599/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=d7cd64ec9795405198144cf5df1d5055",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214679+00:00"
+    },
+    {
+      "sol_number": "36C79126R0011",
+      "title": "Electro-Therapeutic Modalities for Pain Management (ETMPM) - Transcutaneous Electrical Nerve Stimulation (TENS) Procurement Program",
+      "agency": "COMMODITIES & SERVICES ACQUISITION SERVICE (36C791)",
+      "psc_code": "6515",
+      "posted_date": "2026-09-19",
+      "response_deadline": "2026-10-19",
+      "url": "https://sam.gov/workspace/contract/opp/bbcbcc2ba0124109a4d6c9f246071cef/view",
+      "attachments": "https://sam.gov/api/prod/opps/v3/opportunities/resources/files/0c0b7996607542eab1d881cefaa1a342/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/3fe43633ddb642dfb610827d95d60710/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/4dd29a6ac3bc419ba16ca69e75d2321d/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/5d8b4b01433c433a85419790afb8014d/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/948ef21a5cc242ba8e728e3a3abc8186/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/a360728c759144f8866f90b47d7baa14/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/d07a64bf62824e9483c3e874b83ce16e/download; https://sam.gov/api/prod/opps/v3/opportunities/resources/files/e1338b2340d84124a13ce3854bdf957e/download",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=bbcbcc2ba0124109a4d6c9f246071cef",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.214747+00:00"
+    },
+    {
+      "sol_number": "PR16283272",
+      "title": "Limited Competition Justification and Award Notice Outbound Shipments",
+      "agency": "US EMBASSY KUWAIT",
+      "psc_code": "R706",
+      "posted_date": "2026-09-19",
+      "response_deadline": "",
+      "url": "https://sam.gov/workspace/contract/opp/ffceeb7b4f5943c69ab057a26036c41d/view",
+      "attachments": "",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=ffceeb7b4f5943c69ab057a26036c41d",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.215167+00:00"
+    },
+    {
+      "sol_number": "140P8426Q0013",
+      "title": "J--Replace Fire System Piping, Lava Beds Nat'l Monumt",
+      "agency": "PWR PORE MABO (84000)",
+      "psc_code": "J047",
+      "posted_date": "2026-09-19",
+      "response_deadline": "",
+      "url": "https://sam.gov/workspace/contract/opp/563b1589301a414282fef5511cc5fd70/view",
+      "attachments": "",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=563b1589301a414282fef5511cc5fd70",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.215458+00:00"
+    },
+    {
+      "sol_number": "W912HQ26PA071",
+      "title": "Locker Room Renovation at UMSB",
+      "agency": "W4LD USA HECSA",
+      "psc_code": "M1EB",
+      "posted_date": "2026-09-19",
+      "response_deadline": "",
+      "url": "https://sam.gov/workspace/contract/opp/01e2af3bd2e14601b1280814eb816073/view",
+      "attachments": "",
+      "nsns": "",
+      "part_numbers": "",
+      "quantities": "",
+      "pricing_score": 0,
+      "pricing_flags": [],
+      "description": "https://api.sam.gov/prod/opportunities/v1/noticedesc?noticeid=01e2af3bd2e14601b1280814eb816073",
+      "description_enriched": false,
+      "fetched_at": "2026-09-20T16:34:39.215529+00:00"
     }
   ]
 }
